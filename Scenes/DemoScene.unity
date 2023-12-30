@@ -1070,10 +1070,10 @@ MonoBehaviour:
   initialWaitText: Loading World...
   loadSavedGame: 0
   saveFilename: save0001
-  globalIllumination: 0
+  globalIllumination: 1
   ambientLight: 0.2
   daylightShadowAtten: 0.65
-  enableSmoothLighting: 0
+  enableSmoothLighting: 1
   obscuranceMode: 0
   obscuranceIntensity: 0.5
   enableReliefMapping: 0
@@ -1083,7 +1083,7 @@ MonoBehaviour:
   reliefMaxDistance: 25
   enableNormalMap: 0
   enableFogSkyBlending: 0
-  textureSize: 64
+  textureSize: 32
   maxChunks: 5000
   hqFiltering: 0
   mipMapBias: 1
@@ -1125,8 +1125,8 @@ MonoBehaviour:
   distanceAnchor: {fileID: 485858574}
   adjustCameraFarClip: 1
   usePixelLights: 0
-  enableShadows: 0
-  shadowsOnWater: 0
+  enableShadows: 1
+  shadowsOnWater: 1
   realisticWater: 0
   maxCPUTimePerFrame: 30
   maxChunksPerFrame: 50
