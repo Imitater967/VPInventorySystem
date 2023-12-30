@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 27712d9aa2d924ef4bfdf3b177b44418, type: 3}
-  m_Name: CraftingTable
+  m_Name: Chest
   m_EditorClassIdentifier: 
-  title: CraftingTable
+  title: 
   renderType: 5
   overrideMaterial: 0
   overrideMaterialNonGeo: {fileID: 0}
@@ -24,34 +24,34 @@ MonoBehaviour:
   texturesPackingNormalMap: 0
   texturesPackingReliefMap: 0
   worldSpaceUVs: 0
-  opaque: 15
-  occludesTop: 1
-  occludesBottom: 1
-  occludesLeft: 1
-  occludesRight: 1
-  occludesForward: 1
-  occludesBack: 1
-  textureTop: {fileID: 2800000, guid: bfb635c8f802ec14fb525f12ee061985, type: 3}
+  opaque: 0
+  occludesTop: 0
+  occludesBottom: 0
+  occludesLeft: 0
+  occludesRight: 0
+  occludesForward: 0
+  occludesBack: 0
+  textureTop: {fileID: 0}
   textureTopEmission: {fileID: 0}
   textureTopNRM: {fileID: 0}
   textureTopDISP: {fileID: 0}
-  textureSide: {fileID: 2800000, guid: 0b65770cb1c5f3f4bae89d3ba8515a6c, type: 3}
+  textureSide: {fileID: 0}
   textureSideEmission: {fileID: 0}
   textureSideNRM: {fileID: 0}
   textureSideDISP: {fileID: 0}
-  textureRight: {fileID: 2800000, guid: 3fda1381c5464e74d83a2ae3d2278a1b, type: 3}
+  textureRight: {fileID: 0}
   textureRightEmission: {fileID: 0}
   textureRightNRM: {fileID: 0}
   textureRightDISP: {fileID: 0}
-  textureForward: {fileID: 2800000, guid: 0b65770cb1c5f3f4bae89d3ba8515a6c, type: 3}
+  textureForward: {fileID: 0}
   textureForwardEmission: {fileID: 0}
   textureForwardNRM: {fileID: 0}
   textureForwardDISP: {fileID: 0}
-  textureLeft: {fileID: 2800000, guid: 3fda1381c5464e74d83a2ae3d2278a1b, type: 3}
+  textureLeft: {fileID: 0}
   textureLeftEmission: {fileID: 0}
   textureLeftNRM: {fileID: 0}
   textureLeftDISP: {fileID: 0}
-  textureBottom: {fileID: 2800000, guid: ad003b4b84cbfa841bb917173b09743f, type: 3}
+  textureBottom: {fileID: 0}
   textureBottomEmission: {fileID: 0}
   textureBottomNRM: {fileID: 0}
   textureBottomDISP: {fileID: 0}
@@ -76,22 +76,22 @@ MonoBehaviour:
   hidden: 0
   canBeCollected: 1
   dropProbability: 1
-  dropItem: {fileID: 11400000, guid: 1f365c308571d8547a7c7f90701b3d97, type: 2}
+  dropItem: {fileID: 11400000, guid: 29abad05e92076f42b17f63989388357, type: 2}
   dropItemLifeTime: 10
   dropItemScale: 0.25
-  icon: {fileID: 2800000, guid: 0b65770cb1c5f3f4bae89d3ba8515a6c, type: 3}
-  textureSample: {fileID: 2800000, guid: 0b65770cb1c5f3f4bae89d3ba8515a6c, type: 3}
+  icon: {fileID: 2800000, guid: 6119701bb0c09044e9b9207ec9ac57e4, type: 3}
+  textureSample: {fileID: 0}
   overrideMainTexture: 0
   overrideMainTextureOffset: {x: 0, y: 0}
   navigatable: 0
   denseLeaves: 1
   windAnimation: 1
   supportsBevel: 0
-  model: {fileID: 6186413971960700016, guid: aafca9a4804acb1489c4b487115124f3, type: 3}
+  model: {fileID: 3055670685487464200, guid: bb5b6f76cdb6ccc4fafc9315f129eb53, type: 3}
   generateCollider: 0
-  generateNavMesh: 1
+  generateNavMesh: 0
   prefabMaterial: 0
-  gpuInstancing: 1
+  gpuInstancing: 0
   castShadows: 1
   receiveShadows: 1
   createGameObject: 1
