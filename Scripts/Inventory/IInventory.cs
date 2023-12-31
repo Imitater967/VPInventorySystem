@@ -2,17 +2,23 @@ using VoxelPlay;
 
 namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable
 {
+    
+    public delegate void OnInventoryItemQuantityChange(int slot,ItemDefinition item, float quantity);
     public interface IInventory
     {
-        event OnPlayerInventoryItemQuantityChange OnItemAdded;
+        event OnInventoryItemQuantityChange OnItemAdded;
         event OnPlayerInventoryClear OnItemsClear;
         InventoryItem? GetItemAt(int index);
         void SetItemAt(int index ,InventoryItem inventoryItem);
-        bool AddInventoryItem(ItemDefinition newItem, float quantity = 1);
-        void AddInventoryItem(ItemDefinition[] newItems);
+        bool AddInventoryItem(InventoryItem newItem);
+        void AddInventoryItem(InventoryItem[] newItems);
+        bool RemoveInventoryItem(InventoryItem newItem);
+        void RemoveInventoryItem(InventoryItem[] newItems);
         bool HasItem (ItemDefinition item);
         float GetItemQuantity(ItemDefinition item);
+        void SwapItem(int indexA, int indexB);
         void Clear();
         int Size();
+        int RemainingSlots();
     }
 }

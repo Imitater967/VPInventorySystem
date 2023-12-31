@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using VoxelPlay;
 
@@ -6,11 +7,12 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable
 {
     public class BasicInventory : MonoBehaviour, IInventory
     {
-        public event OnPlayerInventoryItemQuantityChange OnItemAdded;
+        public event OnInventoryItemQuantityChange OnItemAdded;
         public event OnPlayerInventoryClear OnItemsClear;
         
         [SerializeField]
         protected List<InventoryItem> m_Items;
+        public IReadOnlyList<InventoryItem> Items => m_Items;
         
         public InventoryItem? GetItemAt(int index)
         {
@@ -31,7 +33,23 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable
             }
             m_Items[index] = inventoryItem;
         }
+        
+        public bool RemoveInventoryItem(InventoryItem newItem)
+        {
+            throw new System.NotImplementedException();
+        }
 
+
+        public void RemoveInventoryItem(InventoryItem[] newItems)
+        {
+            if (newItems == null) {
+                return;
+            }
+
+            for (int k = 0; k < newItems.Length; k++) {
+                RemoveInventoryItem(newItems[k]);
+            }
+        }
 
         /// <summary>
         /// Returns true if player has this item in the inventory
@@ -41,7 +59,7 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable
         }
 
 
-        public virtual void AddInventoryItem(ItemDefinition[] newItems) {
+        public virtual void AddInventoryItem(InventoryItem[] newItems) {
             if (newItems == null) {
                 return;
             }
@@ -50,7 +68,8 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable
                 AddInventoryItem(newItems[k]);
             }
         }
-        
+
+
         /// <summary>
         /// Returns the number of units of a ItemDefinition the player has (if any)
         /// </summary>
@@ -70,6 +89,13 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable
             return quanity;
         }
 
+        public void SwapItem(int indexA, int indexB)
+        {
+            var fakeA = m_Items[indexA];
+            m_Items[indexA] = m_Items[indexB];
+            m_Items[indexB] = fakeA;
+        }
+
         public void Clear()
         {
             m_Items.Clear();
@@ -80,33 +106,76 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable
             return m_Items.Count;
         }
 
-        public virtual bool AddInventoryItem(ItemDefinition newItem, float quantity = 1) {
+        public int RemainingSlots()
+        {
+            return m_Items.Count(x => x.quantity <= 0);
+        }
+
+        public virtual bool AddInventoryItem(InventoryItem newItem) {
             if (newItem == null || m_Items == null) {
                 return false;
             }
 
             // Check if item is already in inventory
             int itemsCount = m_Items.Count;
+            float amountAdded = 0;
             InventoryItem i;
             for (int k = 0; k < itemsCount; k++) {
-                if (m_Items[k].item == newItem) {
+                if (m_Items[k].item == newItem.item) {
                     i = m_Items[k];
-                    i.quantity += quantity;
+                    float originQuantity = i.quantity;
+                    i.quantity += newItem.quantity;
+                    i.quantity = Mathf.Min(m_Items[k].item.MaxStackSize, i.quantity);
+                    
                     m_Items[k] = i;
-                    if (OnItemAdded != null) OnItemAdded(newItem, quantity);
-                    return false;
+                    amountAdded += originQuantity - i.quantity;
+                    newItem.quantity -= amountAdded;
+                    if (OnItemAdded != null)
+                    {
+                        OnItemAdded(k,m_Items[k].item, m_Items[k].quantity);
+                    }
+                    if (newItem.quantity <= 0)
+                    {
+                        return true;
+                    }
                 }
             }
-            i = new InventoryItem
-            {
-                item = newItem,
-                quantity = quantity
-            };
+
+            int stackToAdd = Mathf.FloorToInt(newItem.quantity / newItem.item.MaxStackSize);
+            float remainingAmount = newItem.quantity % newItem.item.MaxStackSize;
             
-            m_Items.Add(i);
-            if (OnItemAdded != null) OnItemAdded(newItem, quantity);
+            for (var i1 = 0; i1 < m_Items.Count && stackToAdd>0 ; i1++)
+            {
+                if (m_Items[i1].quantity > 0)
+                {
+                    continue;
+                }
 
+                stackToAdd--;
+                m_Items[i1] = new InventoryItem()
+                {
+                    quantity = newItem.item.MaxStackSize,
+                    item = newItem.item,
+                };
+                
+                if (OnItemAdded != null) OnItemAdded(i1,newItem.item, newItem.item.MaxStackSize);
+            }
+            
+            for (var i1 = 0; i1 < m_Items.Count ; i1++)
+            {
+                if (m_Items[i1].quantity > 0)
+                {
+                    continue;
+                }
 
+                m_Items[i1] = new InventoryItem()
+                {
+                    quantity = remainingAmount,
+                    item = newItem.item,
+                };
+                
+                if (OnItemAdded != null) OnItemAdded(i1,newItem.item, remainingAmount);
+            }
             return true;
         }
     }
