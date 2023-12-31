@@ -1,6 +1,6 @@
 using VoxelPlay;
 
-namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable
+namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Character
 {
     
     public delegate void OnInventoryItemQuantityChange(int slot,ItemDefinition item, float quantity);
@@ -12,7 +12,7 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable
         void SetItemAt(int index ,InventoryItem inventoryItem);
         bool AddInventoryItem(InventoryItem newItem);
         void AddInventoryItem(InventoryItem[] newItems);
-        bool RemoveInventoryItem(InventoryItem newItem);
+        float RemoveInventoryItem(InventoryItem newItem);
         void RemoveInventoryItem(InventoryItem[] newItems);
         bool HasItem (ItemDefinition item);
         float GetItemQuantity(ItemDefinition item);

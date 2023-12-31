@@ -1,7 +1,7 @@
 using UnityEngine;
 using VoxelPlay;
 
-namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable
+namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Character
 {
     public class BasicCharacterInventory : BasicInventory, ICharacterInventory
     {
@@ -22,6 +22,10 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable
 
         public InventoryItem? GetItemInHand()
         {
+            if (m_SelectedItemIndex == -1)
+            {
+                return null;
+            }
             return GetItemAt(m_SelectedItemIndex);
         }
 

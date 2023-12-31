@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEngine;
 using VoxelPlay;
 
-namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable
+namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Character
 {
     public class BasicInventory : MonoBehaviour, IInventory
     {
@@ -12,7 +12,10 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable
         
         [SerializeField]
         protected List<InventoryItem> m_Items;
+        
         public IReadOnlyList<InventoryItem> Items => m_Items;
+
+        public List<InventoryItem> GetItemList => m_Items;
         
         public InventoryItem? GetItemAt(int index)
         {
@@ -34,9 +37,31 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable
             m_Items[index] = inventoryItem;
         }
         
-        public bool RemoveInventoryItem(InventoryItem newItem)
+        /// <summary>
+        /// 需要删除的物品
+        /// </summary>
+        /// <returns>删除的数量</returns>
+        public float RemoveInventoryItem(InventoryItem newItem)
         {
-            throw new System.NotImplementedException();
+            float countToRemove = newItem.quantity;
+            for (var i = 0; i < m_Items.Count && newItem.quantity>0; i++)
+            {
+                var inventoryItem = m_Items[i];
+                if (inventoryItem.IsSameItem(newItem))
+                {
+                    var originQuantity = inventoryItem.quantity;
+                    inventoryItem.quantity -= newItem.quantity;
+                    inventoryItem.quantity = Mathf.Max(newItem.quantity, 0);
+                    if (inventoryItem.quantity == 0)
+                    {
+                        inventoryItem.item = null;
+                    }
+                    m_Items[i] = inventoryItem;
+                    newItem.quantity -= originQuantity - inventoryItem.quantity;
+                }
+            }
+
+            return countToRemove - newItem.quantity;
         }
 
 
@@ -81,7 +106,7 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable
             int itemCount = m_Items.Count;
             float quanity = 0;
             for (int k = 0; k < itemCount; k++) {
-                if (m_Items[k].item == item)
+                if (m_Items[k].IsSameItem(item))
                 {
                     quanity += m_Items[k].quantity;
                 }
@@ -121,7 +146,7 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable
             float amountAdded = 0;
             InventoryItem i;
             for (int k = 0; k < itemsCount; k++) {
-                if (m_Items[k].item == newItem.item) {
+                if (m_Items[k].IsSameItem(newItem)) {
                     i = m_Items[k];
                     float originQuantity = i.quantity;
                     i.quantity += newItem.quantity;

@@ -1,7 +1,7 @@
 using UnityEngine;
 using VoxelPlay;
 
-namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable
+namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Character
 {
     public class Chest: VoxelPlayInteractiveObject
     {

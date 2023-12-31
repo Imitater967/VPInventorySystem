@@ -1,6 +1,6 @@
 using VoxelPlay;
 
-namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable
+namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Character
 {
     public interface ICharacterInventory : IInventory
     {
