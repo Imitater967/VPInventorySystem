@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using VoxelPlay;
 
-namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Character
+namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Crafting
 {
     [Serializable]
     public partial class RecipeMetadata

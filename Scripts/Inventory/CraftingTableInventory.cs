@@ -1,6 +1,7 @@
 using VoxelPlay;
+using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Crafting;
 
-namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Character
+namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory
 {
     public class CraftingTableInventory: BasicInventory
     {
@@ -11,5 +12,9 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Character
         }
         private InventoryItem m_Result;
 
+        public virtual void Craft(Recipe recipe)
+        {
+            
+        }
     }
 }

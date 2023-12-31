@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using VoxelPlay;
+using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory;
 
 namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Character
 {
@@ -25,6 +26,16 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Character
         public override InventoryItem GetSelectedItem()
         {
             return m_Inventory.GetItemInHand().GetValueOrDefault();
+        }
+
+        public override bool SetSelectedItem(int itemIndex)
+        {
+            if (m_Inventory.GetItemAt(itemIndex).HasValue)
+            {
+                m_Inventory.SelectedItemIndex = itemIndex;
+                return true;
+            }
+            return false;
         }
     }
 }

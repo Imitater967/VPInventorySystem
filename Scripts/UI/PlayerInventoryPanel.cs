@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Character;
+using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory;
 
 namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
 {

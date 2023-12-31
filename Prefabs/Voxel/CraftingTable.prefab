@@ -110,6 +110,7 @@ MonoBehaviour:
   customTag: 
   interactionDistance: 4
   triggerNearbyObjects: 0
+  m_Inventory: {fileID: 0}
 --- !u!65 &8697402411874576109
 BoxCollider:
   m_ObjectHideFlags: 0

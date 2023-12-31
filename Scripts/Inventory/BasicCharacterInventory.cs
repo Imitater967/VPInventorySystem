@@ -1,7 +1,7 @@
 using UnityEngine;
 using VoxelPlay;
 
-namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Character
+namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory
 {
     public class BasicCharacterInventory : BasicInventory, ICharacterInventory
     {
@@ -16,7 +16,12 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Character
                 {
                     return;
                 }
+                var pre = m_SelectedItemIndex;
                 m_SelectedItemIndex = value;
+                if (OnItemSelectedChanged != null)
+                {
+                    OnItemSelectedChanged( m_SelectedItemIndex,pre);
+                }
             }
         }
 
@@ -30,5 +35,6 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Character
         }
 
         [SerializeField] private int m_SelectedItemIndex;
+        
     }
 }

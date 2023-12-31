@@ -1,7 +1,9 @@
 using UnityEngine;
 using VoxelPlay;
+using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Crafting;
+using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory;
 
-namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Character
+namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Interactable
 {
     public class CraftingTable: VoxelPlayInteractiveObject
     {
@@ -17,8 +19,9 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Character
 
         public void Craft()
         {
-            var ingredient = m_Inventory.Items;
-            var result = new InventoryItem();
+            Recipe recipe = null;
+            //todo
+            m_Inventory.Craft(recipe);
         }
     }
 }

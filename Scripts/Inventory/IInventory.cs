@@ -1,6 +1,6 @@
 using VoxelPlay;
 
-namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Character
+namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory
 {
     
     public delegate void OnInventoryItemQuantityChange(int slot,ItemDefinition item, float quantity);

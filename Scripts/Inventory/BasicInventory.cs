@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEngine;
 using VoxelPlay;
 
-namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Character
+namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory
 {
     public class BasicInventory : MonoBehaviour, IInventory
     {
