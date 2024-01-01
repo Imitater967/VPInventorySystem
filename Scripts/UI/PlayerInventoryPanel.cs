@@ -22,12 +22,13 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
         {
             base.InitializeSlots();
             m_PlayerInventory.OnItemSelectedChanged += OnItemSelected;
+            OnItemSelected(m_PlayerInventory.SelectedItemIndex,0);
         }
 
         private void OnItemSelected(int selecteditemindex, int prevselecteditemindex)
         {
-            m_Slots[selecteditemindex].ToggleSelectedMask(true);
             m_Slots[prevselecteditemindex].ToggleSelectedMask(false);
+            m_Slots[selecteditemindex].ToggleSelectedMask(true);
         }
 
         private void OnDestroy()

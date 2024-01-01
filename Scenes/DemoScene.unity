@@ -139,6 +139,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ResultSlot
       objectReference: {fileID: 0}
+    - target: {fileID: 4940864891359889335, guid: 76135474328554440937172e9eb428ab, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5742405871228685449, guid: 76135474328554440937172e9eb428ab, type: 3}
       propertyPath: m_IsActive
       value: 0
