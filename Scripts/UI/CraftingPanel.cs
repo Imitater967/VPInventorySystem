@@ -34,6 +34,9 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
         [SerializeField]
         protected Button m_CraftButton;
 
+        [SerializeField] 
+        protected CraftingProgressBar m_ProgressBar;
+
         protected override void Start()
         {
         }
@@ -47,6 +50,11 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
             
             LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)m_LayoutGroup.transform);
             UpdateCraftButton();
+        }
+
+        private void Update()
+        {
+            m_ProgressBar.UpdateProgress(m_CraftingTable.CraftingProgress);
         }
 
         private void OnDisable()

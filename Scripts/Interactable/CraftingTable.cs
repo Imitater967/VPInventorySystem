@@ -8,6 +8,9 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Interactable
 {
     public class CraftingTable: VoxelPlayInteractiveObject
     {
+        public float CraftingProgress => m_Inventory.CraftingProgress;
+        public bool IsCrafting =>m_Inventory.IsCrafting;
+
         [SerializeField]
         private CraftingTableInventory m_Inventory;
 

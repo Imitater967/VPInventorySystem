@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
 using VoxelPlay;
 using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Crafting;
 
@@ -15,15 +16,17 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory
             set => m_Result = value;
         }
 
-        [SerializeField] protected bool m_Crafting;
+        [FormerlySerializedAs("m_Crafting")] [SerializeField] protected bool m_IsCrafting;
         [SerializeField] protected InventoryItem m_Result;
-        [SerializeField] protected float m_Progress = 0;
+        [FormerlySerializedAs("m_Progress")] [SerializeField] protected float m_CraftingProgress = 0;
         protected Coroutine m_CraftTask;
-        public float Progress => m_Progress;
+        public float CraftingProgress => m_CraftingProgress;
+
+        public bool IsCrafting => m_IsCrafting;
 
         public override bool CanSwapItem(IInventory invA, int indexA, IInventory invB, int indexB)
         {
-            return indexB != -1&&!m_Crafting;
+            return indexB != -1&&!m_IsCrafting;
         }
 
         public virtual void Craft(Recipe recipe)
@@ -43,15 +46,15 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory
             
             while (Time.time < craftTime)
             {
-                m_Progress = (craftTime - Time.time) / requireTime;
+                m_CraftingProgress = (craftTime - Time.time) / requireTime;
                 yield return new WaitForSeconds(0.1f);
             }
             
             recipe.Craft(this);
             
             //reset state
-            m_Crafting = false;
-            m_Progress = 0;
+            m_IsCrafting = false;
+            m_CraftingProgress = 0;
             m_CraftTask = null;
         }
 
