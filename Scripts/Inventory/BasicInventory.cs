@@ -43,9 +43,9 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory
                 Debug.LogError($"错误, Out of bounds  {index}");
                 return;
             }
-
-            OnItemChange(index, inventoryItem);
             m_Items[index] = inventoryItem;
+            
+            OnItemChange(index, inventoryItem);
         }
 
         public void RemoveInventoryItemAt(int index, float quantity = 1)

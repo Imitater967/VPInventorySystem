@@ -33,7 +33,7 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
         }
 
 
-        protected void RegisterEvents()
+        protected virtual void RegisterEvents()
         {
             m_Inventory.OnItemAdded += RefreshSlotInternal;
             m_Inventory.OnItemRemoved += RefreshSlotInternal;
@@ -41,7 +41,7 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
         }
 
 
-        protected void UnregisterEvents()
+        protected virtual void UnregisterEvents()
         {
             m_Inventory.OnItemAdded -= RefreshSlotInternal;
             m_Inventory.OnItemRemoved -= RefreshSlotInternal;
@@ -67,7 +67,7 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
             }
         }
 
-        protected void InitializeSlot(InventorySlot slot, int i,InventorySlotStyle slotStyle)
+        protected virtual void InitializeSlot(InventorySlot slot, int i,InventorySlotStyle slotStyle)
         {
             slot.Initialize(this.m_Inventory, i,slotStyle );
             slot.UpdateItem(m_Inventory.GetItemAt(i).Value);

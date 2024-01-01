@@ -13,6 +13,7 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
         [SerializeField] protected Recipe[] m_Recipes;
         public Recipe[] Recipes => m_Recipes;
         private static CraftingManager s_Instance;
+        public static CraftingManager Instance => s_Instance;
         private VoxelPlayFirstPersonController m_Controller;
         
         private void Awake()
