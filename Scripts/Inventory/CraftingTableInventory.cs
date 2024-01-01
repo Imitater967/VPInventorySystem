@@ -13,6 +13,11 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory
         }
         [SerializeField] protected InventoryItem m_Result;
 
+        public override bool CanSwapItem(IInventory invA, int indexA, IInventory invB, int indexB)
+        {
+            return indexB != -1;
+        }
+
         public virtual void Craft(Recipe recipe)
         {
             

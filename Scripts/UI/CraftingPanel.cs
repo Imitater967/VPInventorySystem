@@ -33,7 +33,7 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
         {
             m_CraftingTableInventory = m_CraftingTable.Inventory;
             m_Inventory = m_CraftingTableInventory;
-            base.InitializeSlots();
+            InitializeSlots();
             this.RegisterEvents();
             LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)m_LayoutGroup.transform);
         }
@@ -46,14 +46,14 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
             m_Inventory = null;
         }
 
-        protected override void RefreshSlot(int slot, ItemDefinition item, float quantity)
+        protected override void RefreshSlotInternal(int slot, ItemDefinition item, float quantity)
         {
             if (slot == -1)
             {
                 m_ResultSlot.UpdateItem(item,quantity);
                 return;
             }
-            base.RefreshSlot(slot, item, quantity);
+            base.RefreshSlotInternal(slot, item, quantity);
         }
 
         protected override void InitializeSlots()

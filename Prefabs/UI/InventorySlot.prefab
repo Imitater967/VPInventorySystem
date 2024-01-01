@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 9059481321472916131}
   - component: {fileID: 3765318170451982388}
   - component: {fileID: 28943347868387743}
+  - component: {fileID: 8332260998049717388}
   m_Layer: 5
   m_Name: InventorySlot
   m_TagString: Untagged
@@ -64,7 +65,38 @@ MonoBehaviour:
   m_Icon: {fileID: 7700113829244303208}
   m_Background: {fileID: 3129476335353569309}
   m_SelectMask: {fileID: 211016711863688492}
+  m_DragAndDrop: {fileID: 1792003412262631729}
   m_SlotIndex: 0
+--- !u!114 &8332260998049717388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2139995670154118703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 0
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &4123648984378466082
 GameObject:
   m_ObjectHideFlags: 0
@@ -430,6 +462,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1775950984165877992}
+  - component: {fileID: 1792003412262631729}
   m_Layer: 5
   m_Name: DropAndDrag
   m_TagString: Untagged
@@ -458,3 +491,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1792003412262631729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8425392773556888335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cc64ac259df41dfb5b811899f4b24fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsDragging: 0
+  m_DragParent: {fileID: 0}
+  m_OriginParent: {fileID: 0}

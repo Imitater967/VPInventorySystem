@@ -10,6 +10,9 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
     {
         protected IInventory m_Inventory;
         public IInventory Inventory => m_Inventory;
+
+        [SerializeField]
+        protected Transform m_DragParent;
         [SerializeField]
         protected InventorySlot m_SlotPrefab;
         [SerializeField]
@@ -32,14 +35,16 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
 
         protected void RegisterEvents()
         {
-            m_Inventory.OnItemAdded += RefreshSlot;
-            m_Inventory.OnItemRemoved += RefreshSlot;
+            m_Inventory.OnItemAdded += RefreshSlotInternal;
+            m_Inventory.OnItemRemoved += RefreshSlotInternal;
+            m_Inventory.OnItemChange += RefreshSlot;
         }
+
 
         protected void UnregisterEvents()
         {
-            m_Inventory.OnItemAdded -= RefreshSlot;
-            m_Inventory.OnItemRemoved -= RefreshSlot;
+            m_Inventory.OnItemAdded -= RefreshSlotInternal;
+            m_Inventory.OnItemRemoved -= RefreshSlotInternal;
         }
         
         protected virtual void InitializeSlots()
@@ -64,11 +69,15 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
 
         protected void InitializeSlot(InventorySlot slot, int i,InventorySlotStyle slotStyle)
         {
-            slot.Initialize(i,slotStyle );
+            slot.Initialize(this.m_Inventory, i,slotStyle );
             slot.UpdateItem(m_Inventory.GetItemAt(i).Value);
+            slot.DropAndDrag.DragParent = m_DragParent;
         }
-
-        protected virtual void RefreshSlot(int slot,ItemDefinition item, float quantity)
+        protected virtual void RefreshSlot(int slot,InventoryItem item)
+        {
+            RefreshSlotInternal(slot,item.item,item.quantity);
+        }
+        protected virtual void RefreshSlotInternal(int slot,ItemDefinition item, float quantity)
         {
             m_Slots[slot].UpdateItem(item,quantity);
         }

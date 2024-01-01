@@ -27,8 +27,17 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
 
         private void OnItemSelected(int selecteditemindex, int prevselecteditemindex)
         {
-            m_Slots[prevselecteditemindex].ToggleSelectedMask(false);
-            m_Slots[selecteditemindex].ToggleSelectedMask(true);
+            if (prevselecteditemindex!=-1)
+            {
+                m_Slots[prevselecteditemindex].ToggleSelectedMask(false);
+                
+            }
+
+            if (selecteditemindex != -1)
+            {
+                m_Slots[selecteditemindex].ToggleSelectedMask(true);
+                
+            }
         }
 
         private void OnDestroy()

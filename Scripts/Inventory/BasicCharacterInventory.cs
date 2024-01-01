@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using VoxelPlay;
 
@@ -12,10 +13,16 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory
             get => m_SelectedItemIndex;
             set
             {
-                if (value > m_Items.Count)
+                if (value > m_Items.Count )
                 {
                     return;
                 }
+
+                if (value != -1 && !GetItemAt(value).HasValue)
+                {
+                    return;
+                }
+                
                 var pre = m_SelectedItemIndex;
                 m_SelectedItemIndex = value;
                 if (OnItemSelectedChanged != null)
@@ -35,6 +42,18 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory
         }
 
         [SerializeField] private int m_SelectedItemIndex;
-        
+
+        protected override void Awake()
+        {
+            OnItemChange += ChangeIndexIfNull;
+        }
+
+        private void ChangeIndexIfNull(int slot, InventoryItem item)
+        {
+            if (slot == m_SelectedItemIndex && item.item == null)
+            {
+                SelectedItemIndex = -1;
+            }
+        }
     }
 }

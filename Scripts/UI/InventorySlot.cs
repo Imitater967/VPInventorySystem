@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using VoxelPlay;
+using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory;
 
 namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
 {
@@ -17,9 +18,12 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
 
         [SerializeField] protected Image m_SelectMask;
 
+        [SerializeField] protected ItemDragAndDrop m_DragAndDrop;
 
         [SerializeField] protected int m_SlotIndex;
 
+        [SerializeField] protected IInventory m_Inventory;
+        
         protected InventorySlotStyle m_Style;
 
         public TMP_Text QuantityView
@@ -42,8 +46,12 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
             get => m_SelectMask;
         }
 
+        public ItemDragAndDrop DropAndDrag => m_DragAndDrop;
+        
         public int SlotIndex => m_SlotIndex;
 
+        public IInventory Inventory => m_Inventory;
+        
         public virtual void ApplyStyle(InventorySlotStyle style)
         {
             m_Style = style;
@@ -51,13 +59,19 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
             m_SelectMask.sprite = style.SelectMaskTexture;
         }
 
-        public void Initialize(int i, InventorySlotStyle slotStyle)
+        public void Initialize(IInventory inv, int i, InventorySlotStyle slotStyle)
         {
+            m_Inventory = inv;
             name = $"Slot - {i}";
             m_SlotIndex = i;
             ApplyStyle(slotStyle);
             m_SelectMask.gameObject.SetActive(false);
+            if (m_DragAndDrop != null)
+            {
+                m_DragAndDrop.Initialize(this);
+            }
         }
+
 
         public void ToggleSelectedMask(bool enable)
         {

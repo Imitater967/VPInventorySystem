@@ -465,7 +465,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0.4392157}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -527,6 +527,41 @@ MonoBehaviour:
   m_Spacing: {x: 4, y: 4}
   m_Constraint: 1
   m_ConstraintCount: 9
+--- !u!1 &297018823
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 297018824}
+  m_Layer: 5
+  m_Name: DragParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &297018824
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 297018823}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 617587885}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &400000656
 GameObject:
   m_ObjectHideFlags: 0
@@ -612,7 +647,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.2
-  far clip plane: 32
+  far clip plane: 48
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -888,6 +923,7 @@ RectTransform:
   m_Children:
   - {fileID: 1331640033}
   - {fileID: 1233390156}
+  - {fileID: 297018824}
   m_Father: {fileID: 583434192}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -909,7 +945,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0.392}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1131,7 +1167,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0.4392157}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1503,7 +1539,7 @@ Transform:
   m_GameObject: {fileID: 1201659764}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 3.749773, y: 52.088165, z: 1.1080894}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1658,7 +1694,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.16981131, g: 0.15299037, b: 0.15299037, a: 0.4627451}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1761,7 +1797,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0.70980394}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1797,6 +1833,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f786c46f6b24741b4da3cbb705c3c7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_DragParent: {fileID: 297018824}
   m_SlotPrefab: {fileID: 28943347868387743, guid: 76135474328554440937172e9eb428ab, type: 3}
   m_SlotStyle: {fileID: 11400000, guid: ba457770e715be6499d9e30bf0ec6e10, type: 2}
   m_ResetSlotOnStart: 1
@@ -1855,7 +1892,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1888,6 +1925,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca6b022c1f9047889b1ed3916e72e1c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_DragParent: {fileID: 297018824}
   m_SlotPrefab: {fileID: 28943347868387743, guid: 76135474328554440937172e9eb428ab, type: 3}
   m_SlotStyle: {fileID: 11400000, guid: ba457770e715be6499d9e30bf0ec6e10, type: 2}
   m_ResetSlotOnStart: 1
@@ -1948,7 +1986,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -2039,13 +2077,13 @@ MonoBehaviour:
   particlePoolSize: 1000
   voxelDefinitionsCount: 77
   enableURP: 0
-  debugLevel: 0
+  debugLevel: 1
   world: {fileID: 11400000, guid: 9c8445380140245d0b4806a2ee8972b6, type: 2}
   enableBuildMode: 1
   enableGeneration: 1
   constructorMode: 0
   buildMode: 0
-  renderInEditor: 1
+  renderInEditor: 0
   renderInEditorLowPriority: 0
   renderInEditorDetail: 0
   renderInEditorAreaCenter: {x: 0, y: 0, z: 0}
@@ -2071,7 +2109,7 @@ MonoBehaviour:
   layerClouds: 1
   enableLoadingPanel: 1
   loadingText: Initializing...
-  initialWaitTime: 0
+  initialWaitTime: 2
   initialWaitText: Loading World...
   loadSavedGame: 0
   saveFilename: save0001
@@ -2089,7 +2127,7 @@ MonoBehaviour:
   enableNormalMap: 0
   enableFogSkyBlending: 0
   textureSize: 32
-  maxChunks: 5000
+  maxChunks: 3000
   hqFiltering: 0
   mipMapBias: 1
   filterMode: 0
@@ -2102,7 +2140,7 @@ MonoBehaviour:
   voxelPadding: 1
   usePostProcessing: 0
   previewTouchUIinEditor: 0
-  prewarmChunksInEditor: 5000
+  prewarmChunksInEditor: 2938
   enableTinting: 0
   enableColoredShadows: 0
   enableFresnel: 0
@@ -2122,10 +2160,10 @@ MonoBehaviour:
   enableBrightPointLights: 0
   brightPointsMaxDistance: 10000
   enableURPNativeLights: 0
-  _visibleChunksDistance: 2
-  forceChunkDistance: 1
+  _visibleChunksDistance: 3
+  forceChunkDistance: 2
   unloadFarChunks: 1
-  unloadFarChunksMode: 0
+  unloadFarChunksMode: 1
   unloadFarNavMesh: 1
   distanceAnchor: {fileID: 485858574}
   adjustCameraFarClip: 1
