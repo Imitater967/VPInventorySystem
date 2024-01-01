@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using VoxelPlay;
 
 namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory
@@ -15,6 +16,9 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory
         event OnInventoryItemSwap OnItemSwap;
         event OnItemChange OnItemChange;
         event OnPlayerInventoryClear OnItemsClear;
+        
+        
+        public IReadOnlyList<InventoryItem> Items { get; }
         InventoryItem? GetItemAt(int index);
         void SetItemAt(int index ,InventoryItem inventoryItem);
         bool AddInventoryItem(InventoryItem newItem);

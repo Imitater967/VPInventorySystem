@@ -14,7 +14,7 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Interactable
         public CraftingTableInventory Inventory => m_Inventory;
         public override void OnPlayerAction()
         {
-            PanelManager.OpenCraftingPanel(this);
+            CraftingManager.OpenCraftingPanel(this);
         }
 
         public void Craft()

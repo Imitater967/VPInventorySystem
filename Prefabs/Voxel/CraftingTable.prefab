@@ -166,6 +166,8 @@ MonoBehaviour:
     quantity: 0
   - item: {fileID: 0}
     quantity: 0
+  m_Crafting: 0
   m_Result:
     item: {fileID: 0}
     quantity: 0
+  m_Progress: 0

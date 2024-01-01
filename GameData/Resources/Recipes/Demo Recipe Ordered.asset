@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6f7e827d66a41b1a312e39e06b1bfb6, type: 3}
+  m_Name: Demo Recipe Ordered
+  m_EditorClassIdentifier: 
+  m_Ingredients:
+  - item: {fileID: 11400000, guid: 1f365c308571d8547a7c7f90701b3d97, type: 2}
+    quantity: 2
+  - item: {fileID: 11400000, guid: 29abad05e92076f42b17f63989388357, type: 2}
+    quantity: 2
+  m_Result:
+  - item: {fileID: 11400000, guid: 334c6a5209fb3468dbdc749d0414a67b, type: 2}
+    quantity: 3
+  m_Metadata:
+    Time: 3
+    Unordered: 0
