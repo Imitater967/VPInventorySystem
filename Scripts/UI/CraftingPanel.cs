@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using VoxelPlay;
 using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory;
 
 namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
@@ -32,15 +33,33 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
         {
             m_CraftingTableInventory = m_CraftingTable.Inventory;
             m_Inventory = m_CraftingTableInventory;
-            base.InitializeSlot();
+            base.InitializeSlots();
+            this.RegisterEvents();
             LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)m_LayoutGroup.transform);
         }
 
-        protected override void InitializeSlot()
+        private void OnDisable()
         {
-            base.InitializeSlot();
-            m_ResultSlot.ApplyStyle(m_ResultSlotStyle);
-            m_ResultSlot.Initialize(-1,m_ResultSlotStyle);
+            this.UnregisterEvents();
+            m_CraftingTable = null;
+            m_CraftingTableInventory = null;
+            m_Inventory = null;
+        }
+
+        protected override void RefreshSlot(int slot, ItemDefinition item, float quantity)
+        {
+            if (slot == -1)
+            {
+                m_ResultSlot.UpdateItem(item,quantity);
+                return;
+            }
+            base.RefreshSlot(slot, item, quantity);
+        }
+
+        protected override void InitializeSlots()
+        {
+            base.InitializeSlots();
+            InitializeSlot(m_ResultSlot, -1, m_ResultSlotStyle);
         }
 
         public void Open(Interactable.CraftingTable craftingTable)
@@ -53,7 +72,6 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
         public void Close()
         {
             gameObject.SetActive(false);
-            m_CraftingTable = null;
         }
     }
 }

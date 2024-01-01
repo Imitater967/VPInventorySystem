@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using VoxelPlay;
 using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory;
 
 namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
@@ -23,10 +24,25 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
         
         protected virtual void Start()
         {
-            InitializeSlot();
+            InitializeSlots();
+
+            RegisterEvents();
         }
 
-        protected virtual void InitializeSlot()
+
+        protected void RegisterEvents()
+        {
+            m_Inventory.OnItemAdded += RefreshSlot;
+            m_Inventory.OnItemRemoved += RefreshSlot;
+        }
+
+        protected void UnregisterEvents()
+        {
+            m_Inventory.OnItemAdded -= RefreshSlot;
+            m_Inventory.OnItemRemoved -= RefreshSlot;
+        }
+        
+        protected virtual void InitializeSlots()
         {
             m_Slots.AddRange(m_SlotRoot.GetComponentsInChildren<InventorySlot>());
             if (m_ResetSlotOnStart)
@@ -40,11 +56,21 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
                 for (int i = 0; i < m_Inventory.Size(); i++)
                 {
                     var slot = Instantiate(m_SlotPrefab, m_SlotRoot);
-                    slot.Initialize(i,m_SlotStyle);
-                    slot.UpdateItem(m_Inventory.GetItemAt(i).Value);
+                    InitializeSlot(slot, i, m_SlotStyle);
                     m_Slots.Add(slot);
                 }
             }
+        }
+
+        protected void InitializeSlot(InventorySlot slot, int i,InventorySlotStyle slotStyle)
+        {
+            slot.Initialize(i,slotStyle );
+            slot.UpdateItem(m_Inventory.GetItemAt(i).Value);
+        }
+
+        protected virtual void RefreshSlot(int slot,ItemDefinition item, float quantity)
+        {
+            m_Slots[slot].UpdateItem(item,quantity);
         }
     }
 }

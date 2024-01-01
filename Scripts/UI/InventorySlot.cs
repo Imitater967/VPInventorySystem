@@ -6,7 +6,6 @@ using VoxelPlay;
 
 namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
 {
-
     public class InventorySlot : MonoBehaviour
     {
         [SerializeField] protected TMP_Text m_QuantityView;
@@ -22,7 +21,7 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
         [SerializeField] protected int m_SlotIndex;
 
         protected InventorySlotStyle m_Style;
-        
+
         public TMP_Text QuantityView
         {
             get => m_QuantityView;
@@ -72,10 +71,15 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
 
         public void UpdateItem(InventoryItem result)
         {
-            m_QuantityView.gameObject.SetActive(result.quantity != 0);
-            m_QuantityView.text = "x" + result.quantity;
-            m_Icon.gameObject.SetActive(result.item!=null);
-            m_Icon.texture = result.item?.icon;
+            UpdateItem(result.item, result.quantity);
+        }
+
+        public void UpdateItem(ItemDefinition result, float quantity)
+        {
+            m_QuantityView.gameObject.SetActive(quantity != 0);
+            m_QuantityView.text = "x" + quantity;
+            m_Icon.gameObject.SetActive(result != null);
+            m_Icon.texture = result?.icon;
         }
     }
 }

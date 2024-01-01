@@ -7,6 +7,7 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory
     public interface IInventory
     {
         event OnInventoryItemQuantityChange OnItemAdded;
+        event OnInventoryItemQuantityChange OnItemRemoved;
         event OnPlayerInventoryClear OnItemsClear;
         InventoryItem? GetItemAt(int index);
         void SetItemAt(int index ,InventoryItem inventoryItem);

@@ -18,9 +18,9 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
             base.Start();
         }
 
-        protected override void InitializeSlot()
+        protected override void InitializeSlots()
         {
-            base.InitializeSlot();
+            base.InitializeSlots();
             m_PlayerInventory.OnItemSelectedChanged += OnItemSelected;
         }
 

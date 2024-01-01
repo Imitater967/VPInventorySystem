@@ -8,6 +8,7 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory
     public class BasicInventory : MonoBehaviour, IInventory
     {
         public event OnInventoryItemQuantityChange OnItemAdded;
+        public event OnInventoryItemQuantityChange OnItemRemoved;
         public event OnPlayerInventoryClear OnItemsClear;
         
         [SerializeField]
@@ -57,10 +58,14 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory
                         inventoryItem.item = null;
                     }
                     m_Items[i] = inventoryItem;
-                    newItem.quantity -= originQuantity - inventoryItem.quantity;
+                    var amountRemoved = originQuantity - inventoryItem.quantity;
+                    newItem.quantity -= amountRemoved;
+                    if (OnItemRemoved != null)
+                    {
+                        OnItemRemoved(i, newItem.item, amountRemoved);
+                    }
                 }
             }
-
             return countToRemove - newItem.quantity;
         }
 
