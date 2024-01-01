@@ -22,7 +22,7 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
 
         [Tooltip("Assign on editor")]
         [SerializeField] 
-        protected InventorySlot m_ResultSlot;
+        protected CraftResultSlot m_ResultSlot;
 
         [SerializeField] 
         protected InventorySlotStyle m_ResultSlotStyle;
@@ -49,7 +49,7 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
             RegisterEvents();
             
             LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)m_LayoutGroup.transform);
-            UpdateCraftButton();
+            UpdateCraftState();
         }
 
         private void Update()
@@ -65,6 +65,11 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
             m_Inventory = null;
         }
 
+        public void Craft()
+        {
+            m_CraftingTable.Craft();
+        }
+
         /// <summary>
         /// 在物品变更的基础上, 获取满足的Recipe
         /// </summary>
@@ -73,13 +78,29 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
         protected override void RefreshSlot(int slot, InventoryItem item)
         {
             base.RefreshSlot(slot, item);
-            UpdateCraftButton();
+            UpdateCraftState();
         }
 
-        private void UpdateCraftButton()
+        private void UpdateCraftState()
         {
             m_CurrentRecipe = CraftingManager.Instance.Recipes.FirstOrDefault(x => x.CanAccept(m_Inventory.Items));
+            m_CraftingTable.Recipe = m_CurrentRecipe;
+            UpdateResultPreview();
             m_CraftButton.interactable = m_CurrentRecipe != null;
+        }
+
+        private void UpdateResultPreview()
+        {
+            if (m_CurrentRecipe != null)
+            {
+                var item = m_CurrentRecipe.Result.FirstOrDefault();
+                if (item.item != null)
+                {
+                    m_ResultSlot.SetPreview(item);
+                    return;
+                }
+            }
+            m_ResultSlot.SetPreview(InventoryItem.Null);
         }
 
         protected override void RefreshSlotInternal(int slot, ItemDefinition item, float quantity)

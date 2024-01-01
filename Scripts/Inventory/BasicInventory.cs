@@ -48,6 +48,11 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory
             OnItemChange(index, inventoryItem);
         }
 
+        public void CallItemChange(int index, InventoryItem item)
+        {
+            OnItemChange(index, item);
+        }
+
         public void RemoveInventoryItemAt(int index, float quantity = 1)
         {
             var optItem = GetItemAt(index);

@@ -15,6 +15,16 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Interactable
         private CraftingTableInventory m_Inventory;
 
         public CraftingTableInventory Inventory => m_Inventory;
+
+        [SerializeField]
+        protected Recipe m_Recipe = null;
+
+        public Recipe Recipe
+        {
+            get => m_Recipe;
+            set => m_Recipe = value;
+        }
+
         public override void OnPlayerAction()
         {
             CraftingManager.OpenCraftingPanel(this);
@@ -22,9 +32,7 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Interactable
 
         public void Craft()
         {
-            Recipe recipe = null;
-            //todo
-            m_Inventory.Craft(recipe);
+            m_Inventory.Craft(m_Recipe);
         }
     }
 }

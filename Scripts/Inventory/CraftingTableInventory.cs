@@ -16,9 +16,9 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory
             set => m_Result = value;
         }
 
-        [FormerlySerializedAs("m_Crafting")] [SerializeField] protected bool m_IsCrafting;
+        [SerializeField] protected bool m_IsCrafting;
         [SerializeField] protected InventoryItem m_Result;
-        [FormerlySerializedAs("m_Progress")] [SerializeField] protected float m_CraftingProgress = 0;
+        [SerializeField] protected float m_CraftingProgress = 0;
         protected Coroutine m_CraftTask;
         public float CraftingProgress => m_CraftingProgress;
 
@@ -46,7 +46,7 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory
             
             while (Time.time < craftTime)
             {
-                m_CraftingProgress = (craftTime - Time.time) / requireTime;
+                m_CraftingProgress =1 - ((craftTime - Time.time) / requireTime);
                 yield return new WaitForSeconds(0.1f);
             }
             
@@ -68,10 +68,21 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory
             return base.GetItemAt(index);
         }
 
+        public void SetItemAt(int index, InventoryItem inventoryItem)
+        {
+            if (index == -1)
+            {
+                m_Result = inventoryItem;
+                return;
+            }
+            base.SetItemAt(index,inventoryItem);
+        }
+
         public void SetCraftingResult(IReadOnlyList<InventoryItem> items)
         {
             var result = items.FirstOrDefault(x => x.item != null);
             m_Result = result;
+            CallItemChange(-1, m_Result);
         }
 
         public void SetCraftingResult(InventoryItem[] items)
