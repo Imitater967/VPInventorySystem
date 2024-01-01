@@ -18,12 +18,12 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
             base.Start();
         }
 
-        protected override void InitializeSlots()
-        {
-            base.InitializeSlots();
-            // m_PlayerInventory.OnItemSelectedChanged += OnItemSelected;
-            // OnItemSelected(m_PlayerInventory.SelectedItemIndex,0);
-        }
+        // protected override void InitializeSlots()
+        // {
+        //     base.InitializeSlots();
+        //     m_PlayerInventory.OnItemSelectedChanged += OnItemSelected;
+        //     OnItemSelected(m_PlayerInventory.SelectedItemIndex,0);
+        // }
 
         // private void OnItemSelected(int selecteditemindex, int prevselecteditemindex)
         // {
