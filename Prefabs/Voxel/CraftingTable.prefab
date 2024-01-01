@@ -69,6 +69,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2ed93e9720fb5f94788205f98d3c7ef4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8697402411874576109}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2ed93e9720fb5f94788205f98d3c7ef4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4333867646636872340}
   m_SourcePrefab: {fileID: 100100000, guid: 2ed93e9720fb5f94788205f98d3c7ef4, type: 3}
 --- !u!1 &6186413971960700016 stripped
 GameObject:
@@ -110,7 +113,7 @@ MonoBehaviour:
   customTag: 
   interactionDistance: 4
   triggerNearbyObjects: 0
-  m_Inventory: {fileID: 0}
+  m_Inventory: {fileID: 4333867646636872340}
 --- !u!65 &8697402411874576109
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -132,3 +135,37 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4333867646636872340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6186413971960700016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 121dd5c18ee7491fbf84d54f288eafcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Items:
+  - item: {fileID: 0}
+    quantity: 0
+  - item: {fileID: 0}
+    quantity: 0
+  - item: {fileID: 0}
+    quantity: 0
+  - item: {fileID: 0}
+    quantity: 0
+  - item: {fileID: 0}
+    quantity: 0
+  - item: {fileID: 0}
+    quantity: 0
+  - item: {fileID: 0}
+    quantity: 0
+  - item: {fileID: 0}
+    quantity: 0
+  - item: {fileID: 0}
+    quantity: 0
+  m_Result:
+    item: {fileID: 0}
+    quantity: 0

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using VoxelPlay;
 using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory;
@@ -37,5 +38,27 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Character
             }
             return false;
         }
+        
+        public override bool SetSelectedItem(VoxelDefinition vd) {
+            if (this.items == null) {
+                return false;
+            }
+
+            List<InventoryItem> items = this.items;
+            int count = items.Count;
+            for (int k = 0; k < count; k++) {
+                InventoryItem item = items[k];
+                if (item.item == null)
+                {
+                    continue;
+                }
+                if (item.item.category == ItemCategory.Voxel && item.item.voxelType == vd) {
+                    selectedItemIndex = k;
+                    return true;
+                }
+            }
+            return false;
+        }
+
     }
 }

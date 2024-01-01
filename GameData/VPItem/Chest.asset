@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6d5d8e3721e240edb1241906352c93a, type: 3}
   m_Name: Chest
   m_EditorClassIdentifier: 
+  m_MaxStackSize: 16
   title: Chest
   category: 0
   voxelType: {fileID: 11400000, guid: 0c0bafee68e793e4e9b78a98a95026bd, type: 2}

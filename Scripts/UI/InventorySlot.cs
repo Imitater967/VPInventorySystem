@@ -6,31 +6,6 @@ using VoxelPlay;
 
 namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
 {
-    [Serializable]
-    public partial class InventorySlotStyle
-    {
-        [SerializeField] protected Sprite m_BackgroundTexture;
-        [SerializeField] protected Sprite m_BackgroundHoverTexture;
-        [SerializeField] protected Sprite m_SelectMaskTexture;
-
-        public Sprite BackgroundTexture
-        {
-            get => m_BackgroundTexture;
-            set => m_BackgroundTexture = value;
-        }
-
-        public Sprite SelectMaskTexture
-        {
-            get => m_SelectMaskTexture;
-            set => m_SelectMaskTexture = value;
-        }
-
-        public Sprite BackgroundHoverTexture
-        {
-            get => m_BackgroundHoverTexture;
-            set => m_BackgroundHoverTexture = value;
-        }
-    }
 
     public class InventorySlot : MonoBehaviour
     {

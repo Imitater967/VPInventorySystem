@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6d5d8e3721e240edb1241906352c93a, type: 3}
   m_Name: CraftingTable
   m_EditorClassIdentifier: 
+  m_MaxStackSize: 16
   title: CraftingTable
   category: 0
   voxelType: {fileID: 11400000, guid: fddc10b800a812c429cf04e008c17e81, type: 2}

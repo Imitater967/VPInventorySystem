@@ -21,7 +21,7 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory
         {
             if (m_Items.Count <= index)
             {
-                Debug.LogError("错误, Out of bounds");
+                Debug.LogError($"错误, Out of bounds {index}");
                 return null;
             }
             return m_Items[index];
@@ -31,7 +31,7 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory
         {
             if (m_Items.Count <= index)
             {
-                Debug.LogError("错误, Out of bounds");
+                Debug.LogError($"错误, Out of bounds  {index}");
                 return;
             }
             m_Items[index] = inventoryItem;
@@ -153,7 +153,13 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory
                     i.quantity = Mathf.Min(m_Items[k].item.MaxStackSize, i.quantity);
                     
                     m_Items[k] = i;
-                    amountAdded += originQuantity - i.quantity;
+                    var amountChange = i.quantity - originQuantity ;
+                    if (amountChange <= 0)
+                    {
+                        continue;
+                    }
+
+                    amountAdded += amountChange;
                     newItem.quantity -= amountAdded;
                     if (OnItemAdded != null)
                     {
@@ -169,7 +175,7 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory
             int stackToAdd = Mathf.FloorToInt(newItem.quantity / newItem.item.MaxStackSize);
             float remainingAmount = newItem.quantity % newItem.item.MaxStackSize;
             
-            for (var i1 = 0; i1 < m_Items.Count && stackToAdd>0 ; i1++)
+            for (var i1 = 0; i1 < m_Items.Count  && stackToAdd>0 ; i1++)
             {
                 if (m_Items[i1].quantity > 0)
                 {
@@ -186,7 +192,7 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory
                 if (OnItemAdded != null) OnItemAdded(i1,newItem.item, newItem.item.MaxStackSize);
             }
             
-            for (var i1 = 0; i1 < m_Items.Count ; i1++)
+            for (var i1 = 0; i1 < m_Items.Count && remainingAmount>0 ; i1++)
             {
                 if (m_Items[i1].quantity > 0)
                 {
@@ -199,7 +205,11 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory
                     item = newItem.item,
                 };
                 
-                if (OnItemAdded != null) OnItemAdded(i1,newItem.item, remainingAmount);
+                if (OnItemAdded != null)
+                {
+                    OnItemAdded(i1, newItem.item, remainingAmount);
+                }
+                break;
             }
             return true;
         }

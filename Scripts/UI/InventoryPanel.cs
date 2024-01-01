@@ -35,6 +35,7 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
                 {
                     Destroy(inventorySlot.gameObject);
                 }
+                m_Slots.Clear();
                 m_Slots.Capacity = m_Inventory.Size();
                 for (int i = 0; i < m_Inventory.Size(); i++)
                 {

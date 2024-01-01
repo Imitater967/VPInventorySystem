@@ -1,3 +1,4 @@
+using UnityEngine;
 using VoxelPlay;
 using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Crafting;
 
@@ -10,7 +11,7 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory
             get => m_Result;
             set => m_Result = value;
         }
-        private InventoryItem m_Result;
+        [SerializeField] protected InventoryItem m_Result;
 
         public virtual void Craft(Recipe recipe)
         {

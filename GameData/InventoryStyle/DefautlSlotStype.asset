@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2d39d4db4cc4fabb6b8c8e803fa2c28, type: 3}
+  m_Name: DefautlSlotStype
+  m_EditorClassIdentifier: 
+  m_BackgroundTexture: {fileID: 21300000, guid: a973c3a07fd01654591e3dd42e4a663d, type: 3}
+  m_BackgroundHoverTexture: {fileID: 21300000, guid: 18a337c96e7d91847a2a412eef60d720, type: 3}
+  m_SelectMaskTexture: {fileID: 21300000, guid: 8988480ff63200b4c9c1066c16a8922f, type: 3}

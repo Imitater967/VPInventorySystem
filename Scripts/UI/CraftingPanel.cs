@@ -1,22 +1,28 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory;
 
 namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
 {
     public class CraftingPanel: InventoryPanel
     {
-        private static CraftingPanel s_Instance;
-        private CraftingTableInventory m_CraftingTableInventory;
 
+        private CraftingTableInventory m_CraftingTableInventory;
 
         [SerializeField]
         protected Interactable.CraftingTable m_CraftingTable;
-        
-        private void Awake()
-        {
-            s_Instance = this;
-        }
+
+        [Tooltip("Assign on editor")]
+        [SerializeField] 
+        protected InventorySlot m_ResultSlot;
+
+        [SerializeField] 
+        protected InventorySlotStyle m_ResultSlotStyle;
+
+        [SerializeField]
+        protected HorizontalLayoutGroup m_LayoutGroup;
+
 
         protected override void Start()
         {
@@ -27,18 +33,27 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
             m_CraftingTableInventory = m_CraftingTable.Inventory;
             m_Inventory = m_CraftingTableInventory;
             base.InitializeSlot();
+            LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)m_LayoutGroup.transform);
         }
 
-        private void Open(Interactable.CraftingTable craftingTable)
+        protected override void InitializeSlot()
+        {
+            base.InitializeSlot();
+            m_ResultSlot.ApplyStyle(m_ResultSlotStyle);
+            m_ResultSlot.Initialize(-1,m_ResultSlotStyle);
+        }
+
+        public void Open(Interactable.CraftingTable craftingTable)
         {
             m_CraftingTable = craftingTable;
             gameObject.SetActive(true);
         }
-        
-        
-        public static void OpenCraftingPanel(Interactable.CraftingTable craftingTable)
+
+
+        public void Close()
         {
-            s_Instance.Open(craftingTable);
+            gameObject.SetActive(false);
+            m_CraftingTable = null;
         }
     }
 }

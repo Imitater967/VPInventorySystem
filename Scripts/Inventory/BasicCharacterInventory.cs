@@ -12,7 +12,7 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory
             get => m_SelectedItemIndex;
             set
             {
-                if (m_SelectedItemIndex > m_Items.Count)
+                if (value > m_Items.Count)
                 {
                     return;
                 }
