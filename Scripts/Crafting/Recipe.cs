@@ -61,11 +61,21 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Crafting
                 return false;
             }
 
-            for (var i = 0; i < m_Ingredients.Length; i++)
+            for (var i = 0; i < src.Count; i++)
             {
                 InventoryItem srcItem = src[i];
-                InventoryItem recipeItem = m_Ingredients[i];
-                if (srcItem.item != recipeItem.item || srcItem.quantity < recipeItem.quantity)
+                //检查配方范围内的物品是否满足
+                if (i < m_Ingredients.Length)
+                {
+                    InventoryItem recipeItem = m_Ingredients[i];
+                    if (srcItem.item != recipeItem.item || srcItem.quantity < recipeItem.quantity)
+                    {
+                        return false;
+                    }
+                    continue;
+                }
+                //检查是否有其他杂物
+                if (srcItem.item != null)
                 {
                     return false;
                 }

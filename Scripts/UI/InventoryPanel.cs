@@ -79,7 +79,7 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
         }
         protected virtual void RefreshSlotInternal(int slot,ItemDefinition item, float quantity)
         {
-            m_Slots[slot].UpdateItem(item,quantity);
+            m_Slots[slot].UpdateItem(m_Inventory.GetItemAt(slot).GetValueOrDefault());
         }
     }
 }

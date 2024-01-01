@@ -107,7 +107,7 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
         {
             if (slot == -1)
             {
-                m_ResultSlot.UpdateItem(item,quantity);
+                m_ResultSlot.UpdateItem(m_Inventory.GetItemAt(slot).GetValueOrDefault());
                 return;
             }
             base.RefreshSlotInternal(slot, item, quantity);

@@ -45,12 +45,18 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory
             }
             m_Items[index] = inventoryItem;
             
-            OnItemChange(index, inventoryItem);
+            if (OnItemChange != null)
+            {
+                OnItemChange(index, inventoryItem);
+            }
         }
 
         public void CallItemChange(int index, InventoryItem item)
         {
-            OnItemChange(index, item);
+            if (OnItemChange != null)
+            {
+                OnItemChange(index, item);
+            }
         }
 
         public void RemoveInventoryItemAt(int index, float quantity = 1)
@@ -82,9 +88,13 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory
                 var inventoryItem = m_Items[i];
                 if (inventoryItem.IsSameItem(newItem))
                 {
+                    //储存原来的数量
                     var originQuantity = inventoryItem.quantity;
+                    //当前背包物品减数量
                     inventoryItem.quantity -= newItem.quantity;
-                    inventoryItem.quantity = Mathf.Max(newItem.quantity, 0);
+                    //预防负数
+                    inventoryItem.quantity = Mathf.Max(inventoryItem.quantity, 0);
+                    //物品为空,删除物品
                     if (inventoryItem.quantity == 0)
                     {
                         inventoryItem.item = null;

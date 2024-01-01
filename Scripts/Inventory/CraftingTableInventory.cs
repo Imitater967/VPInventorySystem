@@ -73,6 +73,7 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory
             if (index == -1)
             {
                 m_Result = inventoryItem;
+                CallItemChange(index,inventoryItem);
                 return;
             }
             base.SetItemAt(index,inventoryItem);
