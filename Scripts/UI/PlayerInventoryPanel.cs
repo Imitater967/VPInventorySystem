@@ -21,30 +21,30 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
         protected override void InitializeSlots()
         {
             base.InitializeSlots();
-            m_PlayerInventory.OnItemSelectedChanged += OnItemSelected;
-            OnItemSelected(m_PlayerInventory.SelectedItemIndex,0);
+            // m_PlayerInventory.OnItemSelectedChanged += OnItemSelected;
+            // OnItemSelected(m_PlayerInventory.SelectedItemIndex,0);
         }
 
-        private void OnItemSelected(int selecteditemindex, int prevselecteditemindex)
-        {
-            if (prevselecteditemindex!=-1)
-            {
-                m_Slots[prevselecteditemindex].ToggleSelectedMask(false);
-                
-            }
-
-            if (selecteditemindex != -1)
-            {
-                m_Slots[selecteditemindex].ToggleSelectedMask(true);
-                
-            }
-        }
+        // private void OnItemSelected(int selecteditemindex, int prevselecteditemindex)
+        // {
+        //     if (prevselecteditemindex!=-1)
+        //     {
+        //         m_Slots[prevselecteditemindex].ToggleSelectedMask(false);
+        //         
+        //     }
+        //
+        //     if (selecteditemindex != -1)
+        //     {
+        //         m_Slots[selecteditemindex].ToggleSelectedMask(true);
+        //         
+        //     }
+        // }
 
         private void OnDestroy()
         {
             if (m_PlayerInventory != null)
             {
-                m_PlayerInventory.OnItemSelectedChanged -= OnItemSelected;
+                // m_PlayerInventory.OnItemSelectedChanged -= OnItemSelected;
             }
         }
     }

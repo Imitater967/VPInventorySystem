@@ -22,5 +22,14 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory
         {
             
         }
+
+        public override InventoryItem? GetItemAt(int index)
+        {
+            if (index == -1)
+            {
+                return m_Result;
+            }
+            return base.GetItemAt(index);
+        }
     }
 }

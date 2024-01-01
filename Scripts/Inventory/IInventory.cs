@@ -19,6 +19,9 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory
         void SetItemAt(int index ,InventoryItem inventoryItem);
         bool AddInventoryItem(InventoryItem newItem);
         void AddInventoryItem(InventoryItem[] newItems);
+        
+        void AddInventoryItemAt(int index, float quantity = 1);
+        void RemoveInventoryItemAt(int index, float quantity = 1);
         float RemoveInventoryItem(InventoryItem newItem);
         void RemoveInventoryItem(InventoryItem[] newItems);
         bool HasItem (ItemDefinition item);

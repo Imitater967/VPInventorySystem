@@ -25,7 +25,7 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory
             
         }
 
-        public InventoryItem? GetItemAt(int index)
+        public virtual InventoryItem? GetItemAt(int index)
         {
             if (m_Items.Count <= index)
             {
@@ -46,6 +46,23 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory
 
             OnItemChange(index, inventoryItem);
             m_Items[index] = inventoryItem;
+        }
+
+        public void RemoveInventoryItemAt(int index, float quantity = 1)
+        {
+            var optItem = GetItemAt(index);
+            if (optItem == null)
+            {
+                return;
+            }
+            var item = optItem.GetValueOrDefault();
+            item.quantity -= quantity;
+            if (item.quantity == 0)
+            {
+                SetItemAt(index,InventoryItem.Null);
+                return;
+            }
+            SetItemAt(index,item);
         }
 
         /// <summary>
@@ -115,6 +132,18 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory
             {
                 AddInventoryItem(newItems[k]);
             }
+        }
+
+        public void AddInventoryItemAt(int index, float quantity = 1)
+        {
+            var optItem = GetItemAt(index);
+            if (optItem == null)
+            {
+                return;
+            }
+            var item = optItem.GetValueOrDefault();
+            item.quantity += quantity;
+            SetItemAt(index,item);
         }
 
 

@@ -16,7 +16,7 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
         [SerializeField] protected Image m_Background;
 
 
-        [SerializeField] protected Image m_SelectMask;
+        // [SerializeField] protected Image m_SelectMask;
 
         [SerializeField] protected ItemDragAndDrop m_DragAndDrop;
 
@@ -41,10 +41,10 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
             get => m_Background;
         }
 
-        public Image SelectMask
-        {
-            get => m_SelectMask;
-        }
+        // public Image SelectMask
+        // {
+        //     get => m_SelectMask;
+        // }
 
         public ItemDragAndDrop DropAndDrag => m_DragAndDrop;
         
@@ -56,7 +56,7 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
         {
             m_Style = style;
             m_Background.sprite = style.BackgroundTexture;
-            m_SelectMask.sprite = style.SelectMaskTexture;
+            // m_SelectMask.sprite = style.SelectMaskTexture;
         }
 
         public void Initialize(IInventory inv, int i, InventorySlotStyle slotStyle)
@@ -65,7 +65,7 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
             name = $"Slot - {i}";
             m_SlotIndex = i;
             ApplyStyle(slotStyle);
-            m_SelectMask.gameObject.SetActive(false);
+            // m_SelectMask.gameObject.SetActive(false);
             if (m_DragAndDrop != null)
             {
                 m_DragAndDrop.Initialize(this);
@@ -73,15 +73,16 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
         }
 
 
-        public void ToggleSelectedMask(bool enable)
-        {
-            m_SelectMask.gameObject.SetActive(enable);
-        }
+        // public void ToggleSelectedMask(bool enable)
+        // {
+        //
+        //     m_SelectMask.gameObject.SetActive(enable);
+        // }
 
-        public void ToggleHover(bool hover)
-        {
-            m_Background.sprite = hover ? m_Style.BackgroundHoverTexture : m_Style.BackgroundTexture;
-        }
+        // public void ToggleHover(bool hover)
+        // {
+        //     m_Background.sprite = hover ? m_Style.BackgroundHoverTexture : m_Style.BackgroundTexture;
+        // }
 
         public void UpdateItem(InventoryItem result)
         {

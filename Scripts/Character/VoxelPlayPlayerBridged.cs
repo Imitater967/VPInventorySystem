@@ -16,7 +16,11 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Character
         public override int selectedItemIndex
         {
             get => m_Inventory.SelectedItemIndex;
-            set => m_Inventory.SelectedItemIndex = value;
+            set
+            {
+                _selectedItemIndex = value;
+                m_Inventory.SelectedItemIndex = value;
+            }
         }
 
         public override bool AddInventoryItem(ItemDefinition newItem, float quantity = 1)
@@ -38,7 +42,24 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Character
             }
             return false;
         }
-        
+
+        public override void ConsumeItem(ItemDefinition item, float amount)
+        {
+            m_Inventory.RemoveInventoryItem(new InventoryItem(){item = item,quantity = amount});
+        }
+
+        public override InventoryItem ConsumeItem()
+        {
+            var optItem = m_Inventory.GetItemInHand();
+            if (!optItem.HasValue)
+            {
+                return InventoryItem.Null;
+            }
+            m_Inventory.RemoveInventoryItemAt(m_Inventory.SelectedItemIndex);
+            //值类型,所以不需要担心上行代码的影响
+            return optItem.GetValueOrDefault();
+        }
+
         public override bool SetSelectedItem(VoxelDefinition vd) {
             if (this.items == null) {
                 return false;

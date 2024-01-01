@@ -64,7 +64,6 @@ MonoBehaviour:
   m_QuantityView: {fileID: 5360611072203661090}
   m_Icon: {fileID: 7700113829244303208}
   m_Background: {fileID: 3129476335353569309}
-  m_SelectMask: {fileID: 211016711863688492}
   m_DragAndDrop: {fileID: 1792003412262631729}
   m_SlotIndex: 0
 --- !u!114 &8332260998049717388
@@ -395,7 +394,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5766236037964555007
 RectTransform:
   m_ObjectHideFlags: 0

@@ -34,13 +34,13 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
             m_CraftingTableInventory = m_CraftingTable.Inventory;
             m_Inventory = m_CraftingTableInventory;
             InitializeSlots();
-            this.RegisterEvents();
+            RegisterEvents();
             LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)m_LayoutGroup.transform);
         }
 
         private void OnDisable()
         {
-            this.UnregisterEvents();
+            UnregisterEvents();
             m_CraftingTable = null;
             m_CraftingTableInventory = null;
             m_Inventory = null;

@@ -8,7 +8,7 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
     public partial class InventorySlotStyle: ScriptableObject
     {
         [SerializeField] protected Sprite m_BackgroundTexture;
-        [SerializeField] protected Sprite m_BackgroundHoverTexture;
+        // [SerializeField] protected Sprite m_BackgroundHoverTexture;
         [SerializeField] protected Sprite m_SelectMaskTexture;
 
         public Sprite BackgroundTexture
@@ -23,11 +23,11 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
             set => m_SelectMaskTexture = value;
         }
 
-        public Sprite BackgroundHoverTexture
-        {
-            get => m_BackgroundHoverTexture;
-            set => m_BackgroundHoverTexture = value;
-        }
+        // public Sprite BackgroundHoverTexture
+        // {
+        //     get => m_BackgroundHoverTexture;
+        //     set => m_BackgroundHoverTexture = value;
+        // }
     }
 
 }
