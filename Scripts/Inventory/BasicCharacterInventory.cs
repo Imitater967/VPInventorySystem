@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using VoxelPlay;
 
@@ -13,7 +12,7 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory
             get => m_SelectedItemIndex;
             set
             {
-                if (value > m_Items.Count )
+                if (value > m_Items.Count)
                 {
                     return;
                 }
@@ -22,12 +21,12 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory
                 {
                     return;
                 }
-                
+
                 var pre = m_SelectedItemIndex;
                 m_SelectedItemIndex = value;
                 if (OnItemSelectedChanged != null)
                 {
-                    OnItemSelectedChanged( m_SelectedItemIndex,pre);
+                    OnItemSelectedChanged(m_SelectedItemIndex, pre);
                 }
             }
         }

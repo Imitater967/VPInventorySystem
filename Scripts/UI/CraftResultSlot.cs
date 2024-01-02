@@ -4,7 +4,7 @@ using VoxelPlay;
 
 namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
 {
-    public class CraftResultSlot: InventorySlot
+    public class CraftResultSlot : InventorySlot
     {
         [SerializeField]
         protected RawImage m_PreviewIcon;
@@ -20,6 +20,5 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
                 m_PreviewIcon.texture = null;
             }
         }
-        
     }
 }

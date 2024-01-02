@@ -1,10 +1,10 @@
-using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
 {
-    public class ItemDragAndDrop : MonoBehaviour, IDragHandler, IPointerDownHandler, IPointerUpHandler, ICanvasRaycastFilter
+    public class ItemDragAndDrop : MonoBehaviour, IDragHandler, IPointerDownHandler, IPointerUpHandler,
+        ICanvasRaycastFilter
     {
         private RectTransform m_Rect;
         [SerializeField] private bool m_IsDragging;
@@ -14,7 +14,7 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
 
         [SerializeField] private Transform m_OriginParent;
         private InventorySlot m_InventorySlot;
-        
+
         public Transform DragParent
         {
             get => m_DragParent;
@@ -30,6 +30,7 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
         {
             m_InventorySlot = slot;
         }
+
         public void OnDrag(PointerEventData eventData)
         {
             m_Rect.position = Input.mousePosition;
@@ -51,11 +52,13 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
             {
                 if (eventData.pointerCurrentRaycast.gameObject.TryGetComponent(out InventorySlot slot))
                 {
-                    if (slot.Inventory.CanSwapItem(m_InventorySlot.Inventory,m_InventorySlot.SlotIndex,slot.Inventory,slot.SlotIndex))
+                    if (slot.Inventory.CanSwapItem(m_InventorySlot.Inventory, m_InventorySlot.SlotIndex, slot.Inventory,
+                            slot.SlotIndex))
                     {
-                        slot.Inventory.SwapItem(m_InventorySlot.Inventory,m_InventorySlot.SlotIndex,slot.Inventory,slot.SlotIndex);
+                        slot.Inventory.SwapItem(m_InventorySlot.Inventory, m_InventorySlot.SlotIndex, slot.Inventory,
+                            slot.SlotIndex);
                     }
-                }   
+                }
             }
         }
 

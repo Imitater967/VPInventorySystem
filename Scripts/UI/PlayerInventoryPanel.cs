@@ -1,16 +1,13 @@
-using System;
-using UnityEngine;
 using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Character;
 using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Interactable;
 using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory;
 
 namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
 {
-    public class PlayerInventoryPanel: InventoryPanel
+    public class PlayerInventoryPanel : InventoryPanel
     {
         private VoxelPlayPlayerBridged m_BridgedPlayer;
         private PlayerInventory m_PlayerInventory;
-
 
 
         public override void Open(IContainer container)

@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Serialization;
 using VoxelPlay;
 using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Crafting;
 
@@ -18,15 +17,15 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory
 
         [SerializeField] protected bool m_IsCrafting;
         [SerializeField] protected InventoryItem m_Result;
-        [SerializeField] protected float m_CraftingProgress = 0;
+        [SerializeField] protected float m_CraftingProgress;
         protected Coroutine m_CraftTask;
-        public float CraftingProgress => m_CraftingProgress;
+        public float CraftingProgress { get => m_CraftingProgress; }
 
-        public bool IsCrafting => m_IsCrafting;
+        public bool IsCrafting { get => m_IsCrafting; }
 
         public override bool CanSwapItem(IInventory invA, int indexA, IInventory invB, int indexB)
         {
-            return indexB != -1&&!m_IsCrafting;
+            return indexB != -1 && !m_IsCrafting;
         }
 
         public virtual void Craft(Recipe recipe)
@@ -43,15 +42,15 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory
         {
             var requireTime = recipe.Metadata.Time;
             float craftTime = Time.time + requireTime;
-            
+
             while (Time.time < craftTime)
             {
-                m_CraftingProgress =1 - ((craftTime - Time.time) / requireTime);
+                m_CraftingProgress = 1 - ((craftTime - Time.time) / requireTime);
                 yield return new WaitForSeconds(0.1f);
             }
-            
+
             recipe.Craft(this);
-            
+
             //reset state
             m_IsCrafting = false;
             m_CraftingProgress = 0;
@@ -73,10 +72,10 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory
             if (index == -1)
             {
                 m_Result = inventoryItem;
-                CallItemChange(index,inventoryItem);
+                CallItemChange(index, inventoryItem);
                 return;
             }
-            base.SetItemAt(index,inventoryItem);
+            base.SetItemAt(index, inventoryItem);
         }
 
         public void SetCraftingResult(IReadOnlyList<InventoryItem> items)

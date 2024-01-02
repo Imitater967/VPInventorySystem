@@ -1,5 +1,3 @@
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 using VoxelPlay;
@@ -7,19 +5,21 @@ using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Character;
 using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Crafting;
 using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI;
 
-
 namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Manager
 {
-    public class CraftingManager: MonoBehaviour
+    public class CraftingManager : MonoBehaviour
     {
         [SerializeField] protected CraftingPanel m_CraftingPanel;
-        [FormerlySerializedAs("m_InventoryPanel")] [SerializeField] protected PlayerInventoryPanel m_PlayerInventoryPanel;
+
+        [FormerlySerializedAs("m_InventoryPanel")] [SerializeField]
+        protected PlayerInventoryPanel m_PlayerInventoryPanel;
+
         [SerializeField] protected Recipe[] m_Recipes;
-        public Recipe[] Recipes => m_Recipes;
+        public Recipe[] Recipes { get => m_Recipes; }
         private static CraftingManager s_Instance;
-        public static CraftingManager Instance => s_Instance;
+        public static CraftingManager Instance { get => s_Instance; }
         private VoxelPlayFirstPersonController m_Controller;
-        
+
         private void Awake()
         {
             s_Instance = this;
@@ -65,6 +65,5 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Manager
             VoxelPlayEnvironment.instance.input.enabled = false;
             m_Controller.mouseLook.SetCursorLock(false);
         }
-        
     }
 }

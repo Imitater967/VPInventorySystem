@@ -1,4 +1,3 @@
-using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -23,7 +22,7 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
         [SerializeField] protected int m_SlotIndex;
 
         [SerializeField] protected IInventory m_Inventory;
-        
+
         protected InventorySlotStyle m_Style;
 
         public TMP_Text QuantityView
@@ -46,12 +45,12 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
         //     get => m_SelectMask;
         // }
 
-        public ItemDragAndDrop DropAndDrag => m_DragAndDrop;
-        
-        public int SlotIndex => m_SlotIndex;
+        public ItemDragAndDrop DropAndDrag { get => m_DragAndDrop; }
 
-        public IInventory Inventory => m_Inventory;
-        
+        public int SlotIndex { get => m_SlotIndex; }
+
+        public IInventory Inventory { get => m_Inventory; }
+
         public virtual void ApplyStyle(InventorySlotStyle style)
         {
             m_Style = style;

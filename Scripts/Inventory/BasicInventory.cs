@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -16,14 +15,11 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory
 
         [SerializeField] protected List<InventoryItem> m_Items;
 
-        public IReadOnlyList<InventoryItem> Items => m_Items;
+        public IReadOnlyList<InventoryItem> Items { get => m_Items; }
 
-        public List<InventoryItem> GetItemList => m_Items;
+        public List<InventoryItem> GetItemList { get => m_Items; }
 
-        protected virtual void Awake()
-        {
-            
-        }
+        protected virtual void Awake() { }
 
         public virtual InventoryItem? GetItemAt(int index)
         {
@@ -44,7 +40,7 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory
                 return;
             }
             m_Items[index] = inventoryItem;
-            
+
             if (OnItemChange != null)
             {
                 OnItemChange(index, inventoryItem);
@@ -70,14 +66,14 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory
             item.quantity -= quantity;
             if (item.quantity == 0)
             {
-                SetItemAt(index,InventoryItem.Null);
+                SetItemAt(index, InventoryItem.Null);
                 return;
             }
-            SetItemAt(index,item);
+            SetItemAt(index, item);
         }
 
         /// <summary>
-        /// 需要删除的物品
+        ///     需要删除的物品
         /// </summary>
         /// <returns>删除的数量</returns>
         public float RemoveInventoryItem(InventoryItem newItem)
@@ -128,7 +124,7 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory
         }
 
         /// <summary>
-        /// Returns true if player has this item in the inventory
+        ///     Returns true if player has this item in the inventory
         /// </summary>
         public virtual bool HasItem(ItemDefinition item)
         {
@@ -158,12 +154,12 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory
             }
             var item = optItem.GetValueOrDefault();
             item.quantity += quantity;
-            SetItemAt(index,item);
+            SetItemAt(index, item);
         }
 
 
         /// <summary>
-        /// Returns the number of units of a ItemDefinition the player has (if any)
+        ///     Returns the number of units of a ItemDefinition the player has (if any)
         /// </summary>
         public virtual float GetItemQuantity(ItemDefinition item)
         {
@@ -219,7 +215,6 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory
             {
                 OnItemsClear();
             }
-
         }
 
         public int Size()
@@ -284,13 +279,12 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory
                 }
 
                 stackToAdd--;
-                m_Items[i1] = new InventoryItem()
-                {
-                    quantity = newItem.item.MaxStackSize,
-                    item = newItem.item,
-                };
+                m_Items[i1] = new InventoryItem { quantity = newItem.item.MaxStackSize, item = newItem.item };
 
-                if (OnItemAdded != null) OnItemAdded(i1, newItem.item, newItem.item.MaxStackSize);
+                if (OnItemAdded != null)
+                {
+                    OnItemAdded(i1, newItem.item, newItem.item.MaxStackSize);
+                }
             }
 
             for (var i1 = 0; i1 < m_Items.Count && remainingAmount > 0; i1++)
@@ -300,11 +294,7 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory
                     continue;
                 }
 
-                m_Items[i1] = new InventoryItem()
-                {
-                    quantity = remainingAmount,
-                    item = newItem.item,
-                };
+                m_Items[i1] = new InventoryItem { quantity = remainingAmount, item = newItem.item };
 
                 if (OnItemAdded != null)
                 {

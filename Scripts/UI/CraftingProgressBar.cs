@@ -1,13 +1,11 @@
-using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
 {
-    public class CraftingProgressBar: MonoBehaviour
+    public class CraftingProgressBar : MonoBehaviour
     {
         [SerializeField] protected RectTransform m_Fill;
-        
+
         [Tooltip("Dont edit, change at runtime")]
         [SerializeField] protected float m_EmptyPositionOfX;
 
@@ -19,7 +17,7 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
         public void UpdateProgress(float progress)
         {
             var x = (m_Fill.sizeDelta.x * progress) + m_EmptyPositionOfX;
-            m_Fill.localPosition = new Vector3( x, m_Fill.localPosition.y);
+            m_Fill.localPosition = new Vector3(x, m_Fill.localPosition.y);
         }
     }
 }

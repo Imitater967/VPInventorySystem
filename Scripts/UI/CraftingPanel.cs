@@ -1,7 +1,5 @@
-using System;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 using VoxelPlay;
 using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Crafting;
@@ -11,32 +9,31 @@ using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Manager;
 
 namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
 {
-    public class CraftingPanel: InventoryPanel
+    public class CraftingPanel : InventoryPanel
     {
-
         private CraftingTableInventory m_CraftingTableInventory;
-        
+
         [SerializeField]
         private Recipe m_CurrentRecipe;
-      
+
         [SerializeField]
         protected Interactable.CraftingTable m_CraftingTable;
 
         [Tooltip("Assign on editor")]
-        [SerializeField] 
+        [SerializeField]
         protected CraftResultSlot m_ResultSlot;
 
-        [SerializeField] 
+        [SerializeField]
         protected InventorySlotStyle m_ResultSlotStyle;
 
         [SerializeField]
         protected HorizontalLayoutGroup m_LayoutGroup;
-        
+
         [Tooltip("Button for crafting")]
         [SerializeField]
         protected Button m_CraftButton;
 
-        [SerializeField] 
+        [SerializeField]
         protected CraftingProgressBar m_ProgressBar;
 
 
@@ -45,10 +42,10 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
             //初始化变量
             m_CraftingTableInventory = m_CraftingTable.Inventory;
             m_Inventory = m_CraftingTableInventory;
-         
+
             //初始化槽位
             base.OnEnable();
-            
+
             //更新UI
             LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)m_LayoutGroup.transform);
             UpdateCraftState();
@@ -73,7 +70,7 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
         }
 
         /// <summary>
-        /// 在物品变更的基础上, 获取满足的Recipe
+        ///     在物品变更的基础上, 获取满足的Recipe
         /// </summary>
         /// <param name="slot"></param>
         /// <param name="item"></param>
