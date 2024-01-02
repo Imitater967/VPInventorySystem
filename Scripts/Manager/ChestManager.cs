@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Serialization;
 using VoxelPlay;
@@ -9,28 +10,30 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Manager
 {
     public class ChestManager : MonoBehaviour
     {
-        [FormerlySerializedAs("m_ChestPanel")] [SerializeField]
+        [Tooltip("箱子UI")]
+        [SerializeField]
         protected ChestInventoryPanel m_ChestInventoryPanel;
 
-        [FormerlySerializedAs("m_InventoryPanel")] [SerializeField]
+        [Tooltip("玩家UI")]        
+        [SerializeField]
         protected PlayerInventoryPanel m_PlayerInventoryPanel;
 
         private static ChestManager s_Instance;
         public static ChestManager Instance { get => s_Instance; }
         private VoxelPlayFirstPersonController m_Controller;
 
+        /// <summary>
+        /// Initialize
+        /// </summary>
         private void Awake()
         {
             s_Instance = this;
         }
 
+        /// <summary>
+        /// Get current player
+        /// </summary>
         private void Start()
-        {
-            //第一次执行
-            m_Controller = VoxelPlayFirstPersonController.instance;
-        }
-
-        private void OnEnable()
         {
             m_Controller = VoxelPlayFirstPersonController.instance;
         }
