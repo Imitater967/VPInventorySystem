@@ -3,15 +3,24 @@ using UnityEngine.EventSystems;
 
 namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
 {
-    public class ItemDragAndDrop : MonoBehaviour, IDragHandler, IPointerDownHandler, IPointerUpHandler,
+    
+    /// <summary>
+    /// Drag Handler, C in MVC
+    /// The logic handler.
+    /// </summary>
+    public class ItemDragHandler : MonoBehaviour, IDragHandler, IPointerDownHandler, IPointerUpHandler,
         ICanvasRaycastFilter
     {
+        [Tooltip("Its rectTransform")]
         private RectTransform m_Rect;
+        
+        [Tooltip("Is current dragging")]
         [SerializeField] private bool m_IsDragging;
 
         [Tooltip("Edit at runtime by code")] [SerializeField]
         private Transform m_DragParent;
-
+        
+        [Tooltip("Origin parent, it should be the inventory slot at any time")]
         [SerializeField] private Transform m_OriginParent;
         private InventorySlot m_InventorySlot;
 
@@ -21,21 +30,33 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
             set => m_DragParent = value;
         }
 
-        private void Awake()
+        /// <summary>
+        /// Initialize Values.
+        /// </summary>
+        protected virtual void Awake()
         {
             m_Rect = transform as RectTransform;
         }
 
+        /// <summary>
+        /// Initialize by binding a slot.
+        /// </summary>
         public void Initialize(InventorySlot slot)
         {
             m_InventorySlot = slot;
         }
 
+        /// <summary>
+        /// Keep item follows mouse.
+        /// </summary>
         public void OnDrag(PointerEventData eventData)
         {
             m_Rect.position = Input.mousePosition;
         }
 
+        /// <summary>
+        /// When pressed, start dragging.
+        /// </summary>
         public void OnPointerDown(PointerEventData eventData)
         {
             m_IsDragging = true;
@@ -43,6 +64,9 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
             m_Rect.SetParent(m_DragParent);
         }
 
+        /// <summary>
+        /// When released. execute logic if possible.
+        /// </summary>
         public void OnPointerUp(PointerEventData eventData)
         {
             m_IsDragging = false;
@@ -62,6 +86,9 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
             }
         }
 
+        /// <summary>
+        /// Preventing raycast itself
+        /// </summary>
         public bool IsRaycastLocationValid(Vector2 sp, Camera eventCamera)
         {
             return !m_IsDragging;

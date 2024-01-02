@@ -10,6 +10,9 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
         [Tooltip("Dont edit, change at runtime\n, The x coord when it's empty")]
         [SerializeField] protected float m_EmptyPositionOfX;
 
+        /// <summary>
+        /// Initialize
+        /// </summary>
         private void Awake()
         {
             m_EmptyPositionOfX = m_Fill.localPosition.x - m_Fill.sizeDelta.x;

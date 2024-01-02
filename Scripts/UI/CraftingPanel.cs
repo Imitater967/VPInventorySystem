@@ -139,14 +139,14 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
         /// <summary>
         /// Refresh slots, added extra support for m_ResultSlot.
         /// </summary>
-        protected override void RefreshSlotInternal(int slot, ItemDefinition item, float quantity)
+        protected override void RefreshSlot(int slot, ItemDefinition item, float quantity)
         {
             if (slot == -1)
             {
                 m_ResultSlot.UpdateItem(m_Inventory.GetItemAt(slot).GetValueOrDefault());
                 return;
             }
-            base.RefreshSlotInternal(slot, item, quantity);
+            base.RefreshSlot(slot, item, quantity);
         }
 
         /// <summary>

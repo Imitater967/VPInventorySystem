@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
 {
+    /// <summary>
+    /// Style for inventory slot
+    /// </summary>
     [CreateAssetMenu(menuName = "YZHSoftWare/VPCraftingTable/InventorySlotStyle")]
     [Serializable]
     public class InventorySlotStyle : ScriptableObject

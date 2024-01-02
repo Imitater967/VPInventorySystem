@@ -1,29 +1,44 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using VoxelPlay;
 using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory;
 
 namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
 {
+    /// <summary>
+    /// The slot represents inventory slot, lol.
+    /// V in MVC
+    /// The Model is IInventory :D.
+    /// </summary>
     public class InventorySlot : MonoBehaviour
     {
+        [Tooltip("物品数量")]
         [SerializeField] protected TMP_Text m_QuantityView;
 
+        [Tooltip("物品图标")]
         [SerializeField] protected RawImage m_Icon;
 
+        [Tooltip("物品背景")]
         [SerializeField] protected Image m_Background;
 
-
+        // I removed this, but it's able to work, uncomment this if you want
+        // or may be i should use marco instead?
         // [SerializeField] protected Image m_SelectMask;
 
-        [SerializeField] protected ItemDragAndDrop m_DragAndDrop;
+        [FormerlySerializedAs("m_DragAndDrop")]
+        [Tooltip("背包拖曳组件")]
+        [SerializeField] protected ItemDragHandler m_DragHandler;
 
+        [Tooltip("绑定的Slot槽位")]
         [SerializeField] protected int m_SlotIndex;
 
+        [Tooltip("所属的背包")]
         [SerializeField] protected IInventory m_Inventory;
 
-        protected InventorySlotStyle m_Style;
+        // [Tooltip("绑定的样式")]
+        // [SerializeField] protected InventorySlotStyle m_Style;
 
         public TMP_Text QuantityView
         {
@@ -45,19 +60,28 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
         //     get => m_SelectMask;
         // }
 
-        public ItemDragAndDrop DropAndDrag { get => m_DragAndDrop; }
+        public ItemDragHandler DropAndDrag { get => m_DragHandler; }
 
         public int SlotIndex { get => m_SlotIndex; }
 
         public IInventory Inventory { get => m_Inventory; }
 
-        public virtual void ApplyStyle(InventorySlotStyle style)
+        /// <summary>
+        /// 应用样式
+        /// </summary>
+        protected virtual void ApplyStyle(InventorySlotStyle style)
         {
-            m_Style = style;
+            // m_Style = style;
             m_Background.sprite = style.BackgroundTexture;
             // m_SelectMask.sprite = style.SelectMaskTexture;
         }
 
+        /// <summary>
+        /// Initialize
+        /// </summary>
+        /// <param name="inv">Inventory to bind</param>
+        /// <param name="i">Index of the slot</param>
+        /// <param name="slotStyle">stlpe to apply</param>
         public void Initialize(IInventory inv, int i, InventorySlotStyle slotStyle)
         {
             m_Inventory = inv;
@@ -65,9 +89,9 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
             m_SlotIndex = i;
             ApplyStyle(slotStyle);
             // m_SelectMask.gameObject.SetActive(false);
-            if (m_DragAndDrop != null)
+            if (m_DragHandler != null)
             {
-                m_DragAndDrop.Initialize(this);
+                m_DragHandler.Initialize(this);
             }
         }
 
@@ -83,11 +107,17 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
         //     m_Background.sprite = hover ? m_Style.BackgroundHoverTexture : m_Style.BackgroundTexture;
         // }
 
+        /// <summary>
+        /// Update view
+        /// </summary>
         public void UpdateItem(InventoryItem result)
         {
             UpdateItem(result.item, result.quantity);
         }
 
+        /// <summary>
+        /// Update view
+        /// </summary>
         public void UpdateItem(ItemDefinition result, float quantity)
         {
             m_QuantityView.gameObject.SetActive(quantity != 0);
