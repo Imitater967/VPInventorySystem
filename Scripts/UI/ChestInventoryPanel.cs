@@ -14,6 +14,7 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
         public override void Close()
         {
             gameObject.SetActive(false);
+            //这个非常必要,因为VoxelPlay只是临时启用这个方块, 所以会有内存相关的问题
             m_Inventory = null;
         }
     }
