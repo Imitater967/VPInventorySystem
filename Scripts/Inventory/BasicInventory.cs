@@ -5,14 +5,37 @@ using VoxelPlay;
 
 namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory
 {
+    /// <summary>
+    /// 基础背包
+    /// </summary>
     public class BasicInventory : MonoBehaviour, IInventory
     {
+        /// <summary>
+        /// 物品数量修改时候运行的事件
+        /// </summary>
         public event OnInventoryItemQuantityChange OnItemAdded;
+        
+        /// <summary>
+        /// 物品删除的时候,运行的事件
+        /// </summary>
         public event OnInventoryItemQuantityChange OnItemRemoved;
+        
+        /// <summary>
+        /// 物品交换的时候运行的事件
+        /// </summary>
         public event OnInventoryItemSwap OnItemSwap;
+        
+        /// <summary>
+        /// 物品修改的时候运行的事件
+        /// </summary>
         public event OnItemChange OnItemChange;
+        
+        /// <summary>
+        /// 物品清空的时候运行的事件
+        /// </summary>
         public event OnPlayerInventoryClear OnItemsClear;
-
+        
+        [Tooltip("背包里实际的物品")]
         [SerializeField] protected List<InventoryItem> m_Items;
 
         public IReadOnlyList<InventoryItem> Items { get => m_Items; }
@@ -20,7 +43,25 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory
         public List<InventoryItem> GetItemList { get => m_Items; }
 
         protected virtual void Awake() { }
+        
+        /// <summary>
+        /// 执行ItemChange事件
+        /// </summary>
+        /// <param name="index">发生的Index</param>
+        /// <param name="item">新的物品</param>
+        public void CallItemChange(int index, InventoryItem item)
+        {
+            if (OnItemChange != null)
+            {
+                OnItemChange(index, item);
+            }
+        }
+        
+        #region IInventory
 
+        /// <summary>
+        /// 获取指定Index的物品
+        /// </summary>
         public virtual InventoryItem? GetItemAt(int index)
         {
             if (m_Items.Count <= index)
@@ -31,7 +72,10 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory
 
             return m_Items[index];
         }
-
+        
+        /// <summary>
+        /// 强制设置指定位置的物品
+        /// </summary>
         public virtual void SetItemAt(int index, InventoryItem inventoryItem)
         {
             if (m_Items.Count <= index)
@@ -47,14 +91,11 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory
             }
         }
 
-        public void CallItemChange(int index, InventoryItem item)
-        {
-            if (OnItemChange != null)
-            {
-                OnItemChange(index, item);
-            }
-        }
-
+        /// <summary>
+        /// Remove item, if quantity returns 0, it's definition will be null
+        /// </summary>
+        /// <param name="index">index of item</param>
+        /// <param name="quantity">quantity to remove</param>
         public void RemoveInventoryItemAt(int index, float quantity = 1)
         {
             var optItem = GetItemAt(index);
@@ -109,7 +150,9 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory
             return countToRemove - newItem.quantity;
         }
 
-
+        /// <summary>
+        /// 批量删除物品
+        /// </summary>
         public void RemoveInventoryItem(InventoryItem[] newItems)
         {
             if (newItems == null)
@@ -132,6 +175,9 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory
         }
 
 
+        /// <summary>
+        /// 批量添加背包物品
+        /// </summary>
         public virtual void AddInventoryItem(InventoryItem[] newItems)
         {
             if (newItems == null)
@@ -145,6 +191,11 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory
             }
         }
 
+        /// <summary>
+        /// 添加指定位置指定物品数量
+        /// </summary>
+        /// <param name="index">需要添加的位置</param>
+        /// <param name="quantity">添加的数量</param>
         public void AddInventoryItemAt(int index, float quantity = 1)
         {
             var optItem = GetItemAt(index);
@@ -181,11 +232,21 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory
             return quanity;
         }
 
-        public void SwapItem(int indexA, int indexB)
+        /// <summary>
+        /// 背包内交互物品
+        /// </summary>
+        public virtual void SwapItem(int indexA, int indexB)
         {
             SwapItem(this, indexA, this, indexB);
         }
 
+        /// <summary>
+        /// 两个背包之间交换物品
+        /// </summary>
+        /// <param name="invA">From</param>
+        /// <param name="indexA">From Index</param>
+        /// <param name="invB">To</param>
+        /// <param name="indexB">To Index</param>
         public virtual void SwapItem(IInventory invA, int indexA, IInventory invB, int indexB)
         {
             var originItem = invB.GetItemAt(indexB);
@@ -199,11 +260,21 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory
             }
         }
 
+        /// <summary>
+        /// 两个背包之间交换物品
+        /// </summary>
+        /// <param name="invA">From</param>
+        /// <param name="indexA">From Index</param>
+        /// <param name="invB">To</param>
+        /// <param name="indexB">To Index</param>
         public virtual bool CanSwapItem(IInventory invA, int indexA, IInventory invB, int indexB)
         {
             return true;
         }
 
+        /// <summary>
+        /// Clear all items inside the inventory
+        /// </summary>
         public void Clear()
         {
             for (var i = 0; i < m_Items.Count; i++)
@@ -217,16 +288,23 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory
             }
         }
 
+        /// <returns>side of the inventory</returns>
         public int Size()
         {
             return m_Items.Count;
         }
 
+        /// <returns>remaining empty slots</returns>
         public int RemainingSlots()
         {
             return m_Items.Count(x => x.quantity <= 0);
         }
 
+        /// <summary>
+        /// Add items to inventory
+        /// </summary>
+        /// <param name="newItem">item to add</param>
+        /// <returns>success</returns>
         public virtual bool AddInventoryItem(InventoryItem newItem)
         {
             if (newItem == null || m_Items == null)
@@ -306,5 +384,9 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory
 
             return true;
         }
+
+        #endregion
+
+
     }
 }
