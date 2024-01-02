@@ -9,35 +9,45 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Manager
 {
     public class CraftingManager : MonoBehaviour
     {
+        [Tooltip("绑定的合成台面板")]
         [SerializeField] protected CraftingPanel m_CraftingPanel;
 
-        [FormerlySerializedAs("m_InventoryPanel")] [SerializeField]
-        protected PlayerInventoryPanel m_PlayerInventoryPanel;
-
+        
+        [Tooltip("绑定的玩家背包面板")]
+        [SerializeField] protected PlayerInventoryPanel m_PlayerInventoryPanel;
+        
+        [Tooltip("加载了的所有的配方")]
         [SerializeField] protected Recipe[] m_Recipes;
-        public Recipe[] Recipes { get => m_Recipes; }
-        private static CraftingManager s_Instance;
-        public static CraftingManager Instance { get => s_Instance; }
-        private VoxelPlayFirstPersonController m_Controller;
 
-        private void Awake()
+        protected static CraftingManager s_Instance;
+        
+        public Recipe[] Recipes { get => m_Recipes; }
+        public static CraftingManager Instance { get => s_Instance; }
+        protected VoxelPlayFirstPersonController m_Controller;
+
+        /// <summary>
+        /// Initialize
+        /// Load Recipes
+        /// </summary>
+        protected virtual  void Awake()
         {
             s_Instance = this;
             m_Recipes = Resources.LoadAll<Recipe>("Recipes");
         }
 
+        /// <summary>
+        /// Fetch character instance
+        /// </summary>
         private void Start()
         {
             //第一次执行
             m_Controller = VoxelPlayFirstPersonController.instance;
         }
 
-        private void OnEnable()
-        {
-            m_Controller = VoxelPlayFirstPersonController.instance;
-        }
-
-        private void Update()
+        /// <summary>
+        /// close panel, when escape was pressed
+        /// </summary>
+        protected virtual  void Update()
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
@@ -45,7 +55,10 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Manager
             }
         }
 
-        private void ClosePanels()
+        /// <summary>
+        /// The actual closing method
+        /// </summary>
+        protected virtual void ClosePanels()
         {
             m_PlayerInventoryPanel.gameObject.SetActive(false);
             m_CraftingPanel.Close();
@@ -53,12 +66,20 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Manager
             m_Controller.mouseLook.SetCursorLock(true);
         }
 
+        /// <summary>
+        /// create a panel for a crafting table
+        /// </summary>
+        /// <param name="craftingTable">the table to open</param>
         public static void OpenCraftingPanel(Interactable.CraftingTable craftingTable)
         {
             s_Instance.OpenCraftingPanelInternal(craftingTable);
         }
-
-        private void OpenCraftingPanelInternal(Interactable.CraftingTable craftingTable)
+        
+        /// <summary>
+        /// create a panel for a crafting table
+        /// </summary>
+        /// <param name="craftingTable">the table to open</param>
+        protected virtual  void OpenCraftingPanelInternal(Interactable.CraftingTable craftingTable)
         {
             m_PlayerInventoryPanel.Open(m_Controller.GetComponent<VoxelPlayPlayerBridged>());
             m_CraftingPanel.Open(craftingTable);

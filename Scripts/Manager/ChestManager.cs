@@ -20,12 +20,12 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Manager
 
         private static ChestManager s_Instance;
         public static ChestManager Instance { get => s_Instance; }
-        private VoxelPlayFirstPersonController m_Controller;
+        protected VoxelPlayFirstPersonController m_Controller;
 
         /// <summary>
         /// Initialize
         /// </summary>
-        private void Awake()
+        protected virtual void Awake()
         {
             s_Instance = this;
         }
@@ -33,12 +33,15 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Manager
         /// <summary>
         /// Get current player
         /// </summary>
-        private void Start()
+        protected virtual void Start()
         {
             m_Controller = VoxelPlayFirstPersonController.instance;
         }
 
-        private void Update()
+        /// <summary>
+        /// 这行代码写的不是很好, 是用于检测关闭的
+        /// </summary>
+        protected virtual void Update()
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
@@ -46,7 +49,10 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Manager
             }
         }
 
-        private void ClosePanels()
+        /// <summary>
+        /// 关闭开启箱子背包的时候所有相关的面板
+        /// </summary>
+        protected virtual void ClosePanels()
         {
             m_PlayerInventoryPanel.gameObject.SetActive(false);
             m_ChestInventoryPanel.Close();
@@ -54,12 +60,18 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Manager
             m_Controller.mouseLook.SetCursorLock(true);
         }
 
+        /// <summary>
+        /// 开启箱子GUI
+        /// </summary>
         public static void OpenChestPanel(Chest chest)
         {
             s_Instance.OpenChestPanelInternal(chest);
         }
 
-        private void OpenChestPanelInternal(Chest chest)
+        /// <summary>
+        /// 开启箱子GUI
+        /// </summary>
+        protected virtual void OpenChestPanelInternal(Chest chest)
         {
             m_PlayerInventoryPanel.Open(m_Controller.GetComponent<VoxelPlayPlayerBridged>());
             m_ChestInventoryPanel.Open(chest);
