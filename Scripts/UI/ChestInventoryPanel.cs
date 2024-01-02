@@ -2,14 +2,24 @@ using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Interactable;
 
 namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
 {
+    /// <summary>
+    /// Chest Panel
+    /// </summary>
     public class ChestInventoryPanel : InventoryPanel
     {
+        /// <summary>
+        /// Open the panel
+        /// </summary>
+        /// <param name="container">chest to bind</param>
         public override void Open(IContainer container)
         {
             m_Inventory = container.GetInventory();
             gameObject.SetActive(true);
         }
 
+        /// <summary>
+        /// Close the panel
+        /// </summary>
         public override void Close()
         {
             gameObject.SetActive(false);
