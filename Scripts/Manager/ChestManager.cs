@@ -3,13 +3,14 @@ using UnityEngine.Serialization;
 using VoxelPlay;
 using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Character;
 using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Crafting;
+using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI;
 
-namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
+namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Manager
 {
     public class ChestManager: MonoBehaviour
     {
-        [SerializeField] protected InventoryPanel m_ChestPanel;
-        [SerializeField] protected PlayerInventoryPanel m_InventoryPanel;
+        [FormerlySerializedAs("m_ChestPanel")] [SerializeField] protected ChestInventoryPanel m_ChestInventoryPanel;
+        [FormerlySerializedAs("m_InventoryPanel")] [SerializeField] protected PlayerInventoryPanel m_PlayerInventoryPanel;
         private static ChestManager s_Instance;
         public static ChestManager Instance => s_Instance;
         private VoxelPlayFirstPersonController m_Controller;
@@ -40,8 +41,8 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
 
         private void ClosePanels()
         {
-            m_InventoryPanel.gameObject.SetActive(false);
-            m_ChestPanel.Close();
+            m_PlayerInventoryPanel.gameObject.SetActive(false);
+            m_ChestInventoryPanel.Close();
             VoxelPlayEnvironment.instance.input.enabled = true;
             m_Controller.mouseLook.SetCursorLock(true);
         }
@@ -53,8 +54,8 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
 
         private void OpenChestPanelInternal(Interactable.Chest chest)
         {
-            m_InventoryPanel.Open(m_Controller.GetComponent<VoxelPlayPlayerBridged>());
-            m_ChestPanel.Open(chest);
+            m_PlayerInventoryPanel.Open(m_Controller.GetComponent<VoxelPlayPlayerBridged>());
+            m_ChestInventoryPanel.Open(chest);
             VoxelPlayEnvironment.instance.input.enabled = false;
             m_Controller.mouseLook.SetCursorLock(false);
         }

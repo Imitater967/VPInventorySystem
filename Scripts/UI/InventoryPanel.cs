@@ -32,7 +32,7 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
             RegisterEvents();
         }
 
-        protected void OnDisable()
+        protected virtual void OnDisable()
         {
             UnregisterEvents();
         }

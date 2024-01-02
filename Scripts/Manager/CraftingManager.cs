@@ -1,16 +1,19 @@
 using System;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 using VoxelPlay;
 using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Character;
 using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Crafting;
+using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI;
 
-namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
+
+namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Manager
 {
     public class CraftingManager: MonoBehaviour
     {
         [SerializeField] protected CraftingPanel m_CraftingPanel;
-        [SerializeField] protected PlayerInventoryPanel m_InventoryPanel;
+        [FormerlySerializedAs("m_InventoryPanel")] [SerializeField] protected PlayerInventoryPanel m_PlayerInventoryPanel;
         [SerializeField] protected Recipe[] m_Recipes;
         public Recipe[] Recipes => m_Recipes;
         private static CraftingManager s_Instance;
@@ -44,7 +47,7 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
 
         private void ClosePanels()
         {
-            m_InventoryPanel.gameObject.SetActive(false);
+            m_PlayerInventoryPanel.gameObject.SetActive(false);
             m_CraftingPanel.Close();
             VoxelPlayEnvironment.instance.input.enabled = true;
             m_Controller.mouseLook.SetCursorLock(true);
@@ -57,7 +60,7 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
 
         private void OpenCraftingPanelInternal(Interactable.CraftingTable craftingTable)
         {
-            m_InventoryPanel.Open(m_Controller.GetComponent<VoxelPlayPlayerBridged>());
+            m_PlayerInventoryPanel.Open(m_Controller.GetComponent<VoxelPlayPlayerBridged>());
             m_CraftingPanel.Open(craftingTable);
             VoxelPlayEnvironment.instance.input.enabled = false;
             m_Controller.mouseLook.SetCursorLock(false);

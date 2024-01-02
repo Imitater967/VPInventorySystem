@@ -68,7 +68,7 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory
             return base.GetItemAt(index);
         }
 
-        public void SetItemAt(int index, InventoryItem inventoryItem)
+        public override void SetItemAt(int index, InventoryItem inventoryItem)
         {
             if (index == -1)
             {

@@ -7,6 +7,7 @@ using VoxelPlay;
 using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Crafting;
 using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Interactable;
 using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory;
+using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Manager;
 
 namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
 {
@@ -39,12 +40,16 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
         protected CraftingProgressBar m_ProgressBar;
 
 
-
-        private void OnEnable()
+        protected override void OnEnable()
         {
-            base.OnEnable();
+            //初始化变量
             m_CraftingTableInventory = m_CraftingTable.Inventory;
             m_Inventory = m_CraftingTableInventory;
+         
+            //初始化槽位
+            base.OnEnable();
+            
+            //更新UI
             LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)m_LayoutGroup.transform);
             UpdateCraftState();
         }
@@ -54,9 +59,9 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
             m_ProgressBar.UpdateProgress(m_CraftingTable.CraftingProgress);
         }
 
-        private void OnDisable()
+        protected override void OnDisable()
         {
-            UnregisterEvents();
+            base.OnEnable();
             m_CraftingTable = null;
             m_CraftingTableInventory = null;
             m_Inventory = null;
@@ -118,7 +123,7 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
 
         public override void Open(IContainer craftingTable)
         {
-            m_CraftingTable = craftingTable as Interactable.CraftingTable;
+            m_CraftingTable = (Interactable.CraftingTable)craftingTable;
             gameObject.SetActive(true);
         }
 

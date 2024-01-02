@@ -178,6 +178,7 @@ GameObject:
   - component: {fileID: 5141247432571058389}
   - component: {fileID: 2904294977230193016}
   - component: {fileID: 7214359980369141163}
+  - component: {fileID: 5473704294130171149}
   m_Layer: 0
   m_Name: Chest
   m_TagString: Untagged
@@ -237,6 +238,7 @@ MonoBehaviour:
   customTag: 
   interactionDistance: 4
   triggerNearbyObjects: 0
+  m_Inventory: {fileID: 5473704294130171149}
 --- !u!65 &7214359980369141163
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -258,6 +260,73 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.7813051, y: 0.47916922, z: 0.4760928}
   m_Center: {x: 0.008988619, y: -0.2604154, z: -0.03242089}
+--- !u!114 &5473704294130171149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3055670685487464200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44cb68f195ad442f959e57b856d8aa27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Items:
+  - item: {fileID: 0}
+    quantity: 0
+  - item: {fileID: 0}
+    quantity: 0
+  - item: {fileID: 0}
+    quantity: 0
+  - item: {fileID: 0}
+    quantity: 0
+  - item: {fileID: 0}
+    quantity: 0
+  - item: {fileID: 0}
+    quantity: 0
+  - item: {fileID: 0}
+    quantity: 0
+  - item: {fileID: 0}
+    quantity: 0
+  - item: {fileID: 0}
+    quantity: 0
+  - item: {fileID: 0}
+    quantity: 0
+  - item: {fileID: 0}
+    quantity: 0
+  - item: {fileID: 0}
+    quantity: 0
+  - item: {fileID: 0}
+    quantity: 0
+  - item: {fileID: 0}
+    quantity: 0
+  - item: {fileID: 0}
+    quantity: 0
+  - item: {fileID: 0}
+    quantity: 0
+  - item: {fileID: 0}
+    quantity: 0
+  - item: {fileID: 0}
+    quantity: 0
+  - item: {fileID: 0}
+    quantity: 0
+  - item: {fileID: 0}
+    quantity: 0
+  - item: {fileID: 0}
+    quantity: 0
+  - item: {fileID: 0}
+    quantity: 0
+  - item: {fileID: 0}
+    quantity: 0
+  - item: {fileID: 0}
+    quantity: 0
+  - item: {fileID: 0}
+    quantity: 0
+  - item: {fileID: 0}
+    quantity: 0
+  - item: {fileID: 0}
+    quantity: 0
 --- !u!1 &4924298803271581592
 GameObject:
   m_ObjectHideFlags: 0

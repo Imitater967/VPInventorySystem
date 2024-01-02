@@ -3,7 +3,7 @@ using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory;
 
 namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
 {
-    public class ChestPanel: InventoryPanel
+    public class ChestInventoryPanel: InventoryPanel
     {
         public override void Open(IContainer container)
         {
@@ -14,6 +14,7 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
         public override void Close()
         {
             gameObject.SetActive(false);
+            m_Inventory = null;
         }
     }
 }

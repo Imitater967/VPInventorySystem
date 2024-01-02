@@ -2,6 +2,7 @@ using UnityEngine;
 using VoxelPlay;
 using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Crafting;
 using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory;
+using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Manager;
 using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI;
 
 namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Interactable
