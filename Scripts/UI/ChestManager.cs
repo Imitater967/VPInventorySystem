@@ -1,26 +1,22 @@
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 using VoxelPlay;
 using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Character;
 using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Crafting;
 
 namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
 {
-    public class CraftingManager: MonoBehaviour
+    public class ChestManager: MonoBehaviour
     {
-        [SerializeField] protected CraftingPanel m_CraftingPanel;
+        [SerializeField] protected InventoryPanel m_ChestPanel;
         [SerializeField] protected PlayerInventoryPanel m_InventoryPanel;
-        [SerializeField] protected Recipe[] m_Recipes;
-        public Recipe[] Recipes => m_Recipes;
-        private static CraftingManager s_Instance;
-        public static CraftingManager Instance => s_Instance;
+        private static ChestManager s_Instance;
+        public static ChestManager Instance => s_Instance;
         private VoxelPlayFirstPersonController m_Controller;
         
         private void Awake()
         {
             s_Instance = this;
-            m_Recipes = Resources.LoadAll<Recipe>("Recipes");
         }
 
         private void Start()
@@ -45,23 +41,22 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
         private void ClosePanels()
         {
             m_InventoryPanel.gameObject.SetActive(false);
-            m_CraftingPanel.Close();
+            m_ChestPanel.Close();
             VoxelPlayEnvironment.instance.input.enabled = true;
             m_Controller.mouseLook.SetCursorLock(true);
         }
 
-        public static void OpenCraftingPanel(Interactable.CraftingTable craftingTable)
+        public static void OpenChestPanel(Interactable.Chest craftingTable)
         {
-            s_Instance.OpenCraftingPanelInternal(craftingTable);
+            s_Instance.OpenChestPanelInternal(craftingTable);
         }
 
-        private void OpenCraftingPanelInternal(Interactable.CraftingTable craftingTable)
+        private void OpenChestPanelInternal(Interactable.Chest chest)
         {
             m_InventoryPanel.Open(m_Controller.GetComponent<VoxelPlayPlayerBridged>());
-            m_CraftingPanel.Open(craftingTable);
+            m_ChestPanel.Open(chest);
             VoxelPlayEnvironment.instance.input.enabled = false;
             m_Controller.mouseLook.SetCursorLock(false);
         }
-        
     }
 }

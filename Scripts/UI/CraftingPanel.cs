@@ -5,6 +5,7 @@ using UnityEngine.Serialization;
 using UnityEngine.UI;
 using VoxelPlay;
 using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Crafting;
+using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Interactable;
 using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory;
 
 namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
@@ -37,17 +38,13 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
         [SerializeField] 
         protected CraftingProgressBar m_ProgressBar;
 
-        protected override void Start()
-        {
-        }
+
 
         private void OnEnable()
         {
+            base.OnEnable();
             m_CraftingTableInventory = m_CraftingTable.Inventory;
             m_Inventory = m_CraftingTableInventory;
-            InitializeSlots();
-            RegisterEvents();
-            
             LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)m_LayoutGroup.transform);
             UpdateCraftState();
         }
@@ -119,14 +116,14 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
             InitializeSlot(m_ResultSlot, -1, m_ResultSlotStyle);
         }
 
-        public void Open(Interactable.CraftingTable craftingTable)
+        public override void Open(IContainer craftingTable)
         {
-            m_CraftingTable = craftingTable;
+            m_CraftingTable = craftingTable as Interactable.CraftingTable;
             gameObject.SetActive(true);
         }
 
 
-        public void Close()
+        public override void Close()
         {
             gameObject.SetActive(false);
         }

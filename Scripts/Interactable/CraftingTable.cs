@@ -6,7 +6,7 @@ using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI;
 
 namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Interactable
 {
-    public class CraftingTable: VoxelPlayInteractiveObject
+    public class CraftingTable: VoxelPlayInteractiveObject, IContainer
     {
         public float CraftingProgress => m_Inventory.CraftingProgress;
         public bool IsCrafting =>m_Inventory.IsCrafting;
@@ -33,6 +33,11 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Interactable
         public void Craft()
         {
             m_Inventory.Craft(m_Recipe);
+        }
+
+        public IInventory GetInventory()
+        {
+            return m_Inventory;
         }
     }
 }

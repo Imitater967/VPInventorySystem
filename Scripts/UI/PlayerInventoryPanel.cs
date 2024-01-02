@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Character;
+using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Interactable;
 using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory;
 
 namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
@@ -10,12 +11,19 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
         private VoxelPlayPlayerBridged m_BridgedPlayer;
         private PlayerInventory m_PlayerInventory;
 
-        protected override void Start()
+
+
+        public override void Open(IContainer container)
         {
-            m_BridgedPlayer = (VoxelPlayPlayerBridged)VoxelPlayPlayerBridged.instance;
+            m_BridgedPlayer = (VoxelPlayPlayerBridged)container;
             m_PlayerInventory = m_BridgedPlayer.Inventory;
             m_Inventory = m_PlayerInventory;
-            base.Start();
+            gameObject.SetActive(true);
+        }
+
+        public override void Close()
+        {
+            gameObject.SetActive(false);
         }
 
         // protected override void InitializeSlots()

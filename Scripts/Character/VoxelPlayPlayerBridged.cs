@@ -2,11 +2,12 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using VoxelPlay;
+using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Interactable;
 using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory;
 
 namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Character
 {
-    public class VoxelPlayPlayerBridged : VoxelPlayPlayer
+    public class VoxelPlayPlayerBridged : VoxelPlayPlayer, IContainer
     {
         public PlayerInventory Inventory => m_Inventory;
         [SerializeField] private PlayerInventory m_Inventory;
@@ -81,5 +82,9 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Character
             return false;
         }
 
+        public IInventory GetInventory()
+        {
+            return m_Inventory;
+        }
     }
 }

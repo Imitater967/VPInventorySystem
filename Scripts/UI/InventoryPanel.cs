@@ -2,11 +2,12 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using VoxelPlay;
+using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Interactable;
 using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory;
 
 namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
 {
-    public class InventoryPanel: MonoBehaviour
+    public abstract class InventoryPanel: MonoBehaviour
     {
         protected IInventory m_Inventory;
         public IInventory Inventory => m_Inventory;
@@ -25,13 +26,19 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
         [SerializeField]
         protected List<InventorySlot> m_Slots;
         
-        protected virtual void Start()
+        protected virtual void OnEnable()
         {
             InitializeSlots();
-
             RegisterEvents();
         }
 
+        protected void OnDisable()
+        {
+            UnregisterEvents();
+        }
+
+        public abstract void Open(IContainer container);
+        public abstract void Close();
 
         protected virtual void RegisterEvents()
         {
