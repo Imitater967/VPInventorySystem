@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Imitater967.VoxelPlay.InventorySystem.Inventory;
 using UnityEngine;
 using VoxelPlay;
-using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory;
 
-namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Crafting
+namespace Imitater967.VoxelPlay.InventorySystem.Crafting
 {
     /// <summary>
     /// 配方额外数据

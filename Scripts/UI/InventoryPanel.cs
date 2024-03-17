@@ -1,10 +1,10 @@
 using System.Collections.Generic;
+using Imitater967.VoxelPlay.InventorySystem.Interactable;
+using Imitater967.VoxelPlay.InventorySystem.Inventory;
 using UnityEngine;
 using VoxelPlay;
-using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Interactable;
-using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory;
 
-namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
+namespace Imitater967.VoxelPlay.InventorySystem.UI
 {
     /// <summary>
     /// 背包面板

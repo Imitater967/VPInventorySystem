@@ -1,6 +1,6 @@
-using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Interactable;
+using Imitater967.VoxelPlay.InventorySystem.Interactable;
 
-namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
+namespace Imitater967.VoxelPlay.InventorySystem.UI
 {
     /// <summary>
     /// Chest Panel

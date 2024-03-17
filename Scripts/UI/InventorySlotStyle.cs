@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
+namespace Imitater967.VoxelPlay.InventorySystem.UI
 {
     /// <summary>
     /// Style for inventory slot

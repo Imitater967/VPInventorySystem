@@ -1,10 +1,10 @@
+using Imitater967.VoxelPlay.InventorySystem.Crafting;
+using Imitater967.VoxelPlay.InventorySystem.Inventory;
+using Imitater967.VoxelPlay.InventorySystem.Manager;
 using UnityEngine;
 using VoxelPlay;
-using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Crafting;
-using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory;
-using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Manager;
 
-namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Interactable
+namespace Imitater967.VoxelPlay.InventorySystem.Interactable
 {
     public class CraftingTable : VoxelPlayInteractiveObject, IContainer
     {

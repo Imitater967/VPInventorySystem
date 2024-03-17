@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Imitater967.VoxelPlay.InventorySystem.Crafting;
 using UnityEngine;
 using VoxelPlay;
-using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Crafting;
 
-namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory
+namespace Imitater967.VoxelPlay.InventorySystem.Inventory
 {
     public class CraftingTableInventory : BasicInventory, ICraftingInventory
     {

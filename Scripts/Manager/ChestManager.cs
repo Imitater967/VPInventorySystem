@@ -1,12 +1,12 @@
 using System;
+using Imitater967.VoxelPlay.InventorySystem.Character;
+using Imitater967.VoxelPlay.InventorySystem.Interactable;
+using Imitater967.VoxelPlay.InventorySystem.UI;
 using UnityEngine;
 using UnityEngine.Serialization;
 using VoxelPlay;
-using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Character;
-using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Interactable;
-using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI;
 
-namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Manager
+namespace Imitater967.VoxelPlay.InventorySystem.Manager
 {
     public class ChestManager : MonoBehaviour
     {

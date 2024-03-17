@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using VoxelPlay;
 
-namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory
+namespace Imitater967.VoxelPlay.InventorySystem.Inventory
 {
     public interface ICraftingInventory : IInventory
     {

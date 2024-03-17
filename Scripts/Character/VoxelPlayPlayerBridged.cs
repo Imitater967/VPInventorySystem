@@ -1,10 +1,10 @@
 using System.Collections.Generic;
+using Imitater967.VoxelPlay.InventorySystem.Interactable;
+using Imitater967.VoxelPlay.InventorySystem.Inventory;
 using UnityEngine;
 using VoxelPlay;
-using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Interactable;
-using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory;
 
-namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Character
+namespace Imitater967.VoxelPlay.InventorySystem.Character
 {
     /// <summary>
     /// 被我们修改过的,支持背包的玩家

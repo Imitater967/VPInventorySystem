@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using VoxelPlay;
 
-namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
+namespace Imitater967.VoxelPlay.InventorySystem.UI
 {
     /// <summary>
     /// 合成结果槽位

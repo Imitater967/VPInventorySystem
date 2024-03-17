@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEngine;
 using VoxelPlay;
 
-namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory
+namespace Imitater967.VoxelPlay.InventorySystem.Inventory
 {
     /// <summary>
     /// 基础背包
@@ -123,7 +123,7 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory
             for (var i = 0; i < m_Items.Count && newItem.quantity > 0; i++)
             {
                 var inventoryItem = m_Items[i];
-                if (inventoryItem.IsSameItem(newItem))
+                if (inventoryItem == newItem)
                 {
                     //储存原来的数量
                     var originQuantity = inventoryItem.quantity;
@@ -223,7 +223,7 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory
             float quanity = 0;
             for (int k = 0; k < itemCount; k++)
             {
-                if (m_Items[k].IsSameItem(item))
+                if (m_Items[k].item == item)
                 {
                     quanity += m_Items[k].quantity;
                 }
@@ -318,7 +318,7 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory
             InventoryItem i;
             for (int k = 0; k < itemsCount; k++)
             {
-                if (m_Items[k].IsSameItem(newItem))
+                if (m_Items[k] == newItem)
                 {
                     i = m_Items[k];
                     float originQuantity = i.quantity;

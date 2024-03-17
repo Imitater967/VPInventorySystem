@@ -1,13 +1,13 @@
 using System.Linq;
+using Imitater967.VoxelPlay.InventorySystem.Crafting;
+using Imitater967.VoxelPlay.InventorySystem.Interactable;
+using Imitater967.VoxelPlay.InventorySystem.Inventory;
+using Imitater967.VoxelPlay.InventorySystem.Manager;
 using UnityEngine;
 using UnityEngine.UI;
 using VoxelPlay;
-using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Crafting;
-using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Interactable;
-using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory;
-using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Manager;
 
-namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
+namespace Imitater967.VoxelPlay.InventorySystem.UI
 {
     /// <summary>
     /// Crafting panel
@@ -104,7 +104,13 @@ namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
         /// <param name="item"></param>
         protected override void RefreshSlot(int slot, InventoryItem item)
         {
+            if (slot == -1)
+            {
+                m_ResultSlot.UpdateItem(m_Inventory.GetItemAt(slot).GetValueOrDefault());
+                return;
+            }
             base.RefreshSlot(slot, item);
+            
             UpdateCraftState();
         }
 

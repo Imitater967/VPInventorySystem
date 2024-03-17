@@ -1,8 +1,8 @@
-using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Character;
-using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Interactable;
-using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory;
+using Imitater967.VoxelPlay.InventorySystem.Character;
+using Imitater967.VoxelPlay.InventorySystem.Interactable;
+using Imitater967.VoxelPlay.InventorySystem.Inventory;
 
-namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI
+namespace Imitater967.VoxelPlay.InventorySystem.UI
 {
     public class PlayerInventoryPanel : InventoryPanel
     {

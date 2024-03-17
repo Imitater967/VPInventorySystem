@@ -1,11 +1,11 @@
+using Imitater967.VoxelPlay.InventorySystem.Character;
+using Imitater967.VoxelPlay.InventorySystem.Crafting;
+using Imitater967.VoxelPlay.InventorySystem.UI;
 using UnityEngine;
 using UnityEngine.Serialization;
 using VoxelPlay;
-using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Character;
-using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Crafting;
-using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.UI;
 
-namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Manager
+namespace Imitater967.VoxelPlay.InventorySystem.Manager
 {
     public class CraftingManager : MonoBehaviour
     {

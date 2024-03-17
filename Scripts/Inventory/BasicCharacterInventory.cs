@@ -1,7 +1,7 @@
 using UnityEngine;
 using VoxelPlay;
 
-namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory
+namespace Imitater967.VoxelPlay.InventorySystem.Inventory
 {
     public class BasicCharacterInventory : BasicInventory, ICharacterInventory
     {

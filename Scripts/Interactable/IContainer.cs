@@ -1,6 +1,6 @@
-using ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory;
+using Imitater967.VoxelPlay.InventorySystem.Inventory;
 
-namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Interactable
+namespace Imitater967.VoxelPlay.InventorySystem.Interactable
 {
     /// <summary>
     /// 容器, 每一个容器必定绑定一个背包

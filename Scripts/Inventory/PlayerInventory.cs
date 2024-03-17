@@ -1,4 +1,4 @@
-namespace ZhaoHuiSoftware.VoxelPlayMod.CraftingTable.Inventory
+namespace Imitater967.VoxelPlay.InventorySystem.Inventory
 {
     /// <summary>
     /// 玩家背包
